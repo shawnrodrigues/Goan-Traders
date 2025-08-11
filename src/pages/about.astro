@@ -47,7 +47,7 @@ import Footer from '../components/Footer.astro';
             </p>
           </div>
           <div class="image-content">
-            <img src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=600&h=800" alt="Goa Traders cement warehouse and building materials storage facility" loading="lazy">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOL_3uLpvwfg54y0b3GcXcFdiD7916E5DG_q292=w744-h420-p-k-no?auto=compress&cs=tinysrgb&w=600&h=800" alt="Goa Traders cement warehouse and building materials storage facility" loading="lazy">
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@ import Footer from '../components/Footer.astro';
                 <path fill="currentColor" d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.11 7 14 7.89 14 9C14 10.11 13.11 11 12 11C10.89 11 10 10.11 10 9C10 7.89 10.89 7 12 7M12 13C13.67 13 15 13.9 15 15V16H9V15C9 13.9 10.33 13 12 13Z"/>
               </svg>
             </div>
-            <h3>✅ Trust & Reliability</h3>
+            <h3>Trust & Reliability</h3>
             <p>Built on years of honest dealings and consistent quality delivery, earning the trust of thousands of customers across Goa.</p>
           </div>
           
@@ -87,11 +87,13 @@ import Footer from '../components/Footer.astro';
             <h3>Fast Delivery</h3>
             <p>With our strategic location and efficient logistics network, we ensure prompt delivery to construction sites across Goa.</p>
           </div>
-          
+        </div>
+        
+        <div class="center-card-container">
           <div class="value-card">
             <div class="value-icon">
               <svg viewBox="0 0 24 24" width="48" height="48">
-                <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                <path fill="currentColor" d="M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z"/>
               </svg>
             </div>
             <h3>Competitive Pricing</h3>
@@ -100,7 +102,7 @@ import Footer from '../components/Footer.astro';
         </div>
       </div>
     </section>
-    
+
     <!-- Dealership Section -->
     <section class="dealership-section">
       <div class="container">
@@ -227,6 +229,22 @@ import Footer from '../components/Footer.astro';
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .center-card-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 365px; /* Reduced from 500px to make it more compact */
+  }
+  
+  .center-card-container .value-card {
+    width: 100%;
+    background: white;
+    padding: 2rem;
+    /* No horizontal stretching */
+    max-width: 365px;
   }
   
   .value-card {
@@ -382,6 +400,15 @@ import Footer from '../components/Footer.astro';
     
     .cta-buttons .btn {
       width: 200px;
+    }
+    
+    .center-card-container {
+      max-width: 280px; /* Adjust for mobile */
+    }
+    
+    .center-card-container .value-card {
+      padding: 1.5rem;
+      max-width: 280px;
     }
   }
 </style>
