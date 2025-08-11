@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProductCarousel from '../components/ProductCarousel.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Goa Traders - Cement Supplier & Building Materials Dealer in Goa" 
+  description="Leading cement supplier in Goa offering JK, JSW, Ultratech & Ramco cement. Quality building materials, sand, and construction supplies with fast delivery across Goa."
+  keywords="cement supplier goa, jk cement dealer goa, jsw cement, ultratech cement, ramco cement, building materials goa, sand supplier goa, construction materials goa, cement dealer panjim, cement dealer margao"
+>
+  <Header />
+  <main>
+    <Hero />
+    <ProductCarousel />
+    
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">Why Choose Goa Traders?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48">
+                <path fill="currentColor" d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.11 7 14 7.89 14 9C14 10.11 13.11 11 12 11C10.89 11 10 10.11 10 9C10 7.89 10.89 7 12 7M12 13C13.67 13 15 13.9 15 15V16H9V15C9 13.9 10.33 13 12 13Z"/>
+              </svg>
+            </div>
+            <h3>Authorized Dealer</h3>
+            <p>Official dealer for JK, JSW, Ultratech & Ramco cement brands with genuine quality guarantee.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48">
+                <path fill="currentColor" d="M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z"/>
+              </svg>
+            </div>
+            <h3>Fast Delivery</h3>
+            <p>Quick and reliable delivery across all areas in Goa with our efficient logistics network.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48">
+                <path fill="currentColor" d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+              </svg>
+            </div>
+            <h3>Best Prices</h3>
+            <p>Competitive pricing with transparent billing and no hidden charges for all our products.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" width="48" height="48">
+                <path fill="currentColor" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11 8.68,12.65 10.5,12.91V16H13.5V12.91C15.32,12.65 17,11 17,9A5,5 0 0,0 12,4Z"/>
+              </svg>
+            </div>
+            <h3>Quality Assured</h3>
+            <p>Premium grade materials stored in proper conditions with consistent quality standards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Google Map Section -->
+    <section class="map-section">
+      <div class="container">
+        <h2 class="section-title">Visit Our Store</h2>
+        <p class="map-description">Located in the heart of Goa, serving all areas with fast delivery</p>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3848.283467899955!2d73.94844467580592!3d15.306822559395288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfb10ba83a1c5f%3A0x21e64848edb5c76a!2sGoan%20Traders!5e0!3m2!1sen!2sin!4v1754567909279!5m2!1sen!2sinun"
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Goa Traders Location - Cement and Building Materials Supplier"
+          ></iframe>
+        </div>
+        <div class="contact-cta">
+          <h3>Ready to Start Your Project?</h3>
+          <p>Contact us today for the best cement and building material prices in Goa</p>
+          <div class="cta-buttons">
+            <a href="/contact" class="btn btn-primary">Get Quote</a>
+            <a href="tel:+919765664489" class="btn btn-secondary">Call Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .features-section {
+    padding: 5rem 0;
+    background: white;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .feature-card {
+    background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #2563EB;
+  }
+  
+  .feature-icon {
+    color: #2563EB;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-card p {
+    color: #64748B;
+    line-height: 1.6;
+  }
+  
+  .map-section {
+    padding: 5rem 0;
+    background: white;
+  }
+  
+  .map-description {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #64748B;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+  }
+  
+  .contact-cta {
+    text-align: center;
+    background: linear-gradient(135deg, #FFF8F3 0%, #FFF3E0 100%);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    margin-top: 3rem;
+  }
+  
+  .contact-cta h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-cta p {
+    font-size: 1.1rem;
+    color: #64748B;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  @media (max-width: 768px) {
+    .map-section {
+      padding: 3rem 0;
+    }
+    
+    .features-section {
+      padding: 3rem 0;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-cta {
+      padding: 2rem 1rem;
+    }
+    
+    .contact-cta h3 {
+      font-size: 1.5rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .cta-buttons .btn {
+      width: 200px;
+    }
+  }
+</style>
