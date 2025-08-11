@@ -33,63 +33,59 @@ import Footer from '../components/Footer.astro';
 
     <!-- Reviews Section -->
     <section class="reviews-section">
-      <div class="container">
-        <!-- Google Reviews Widget -->
-        <div class="google-reviews-widget">
-          <h2>Our Google Reviews</h2>
-          <div class="reviews-grid" id="dynamic-google-reviews"></div>
-          <script type="module">
-            async function loadReviews() {
-              const container = document.getElementById('dynamic-google-reviews');
-              try {
-                console.log('Fetching reviews from /api/google-reviews...');
-                const res = await fetch('/api/google-reviews');
-                if (!res.ok) {
-                  console.error(`API call failed with status: ${res.status} ${res.statusText}`);
-                  throw new Error('Network response was not ok');
-                }
-                const data = await res.json();
-                const reviews = data.reviews || (data.result && data.result.reviews) || [];
-                if (data.error) {
-                  console.error(`API error: ${data.error}`);
-                  container.innerHTML = `<p style="color:red;">API error: ${data.error}</p>`;
-                  return;
-                }
-                if (!Array.isArray(reviews) || reviews.length === 0) {
-                  container.innerHTML = '<p>No reviews found.</p>';
-                  return;
-                }
-                container.innerHTML = reviews.slice(0, 6).map(r => `
-                  <div class="review-card">
-                    <div class="review-header">
-                      <div class="reviewer-info">
-                        <div class="reviewer-avatar">
-                          <span>${r.author_name?.split(' ').map(n => n[0]).join('').toUpperCase() || ''}</span>
-                        </div>
-                        <div class="reviewer-details">
-                          <h3>${r.author_name || ''}</h3>
-                          <p>${r.relative_time_description || ''}</p>
-                        </div>
-                      </div>
-                      <div class="review-rating">
-                        <div class="stars">${'★'.repeat(r.rating || 0)}${'☆'.repeat(5 - (r.rating || 0))}</div>
-                      </div>
-                    </div>
-                    <div class="review-content">
-                      <p>"${r.text || ''}"</p>
-                    </div>
-                  </div>
-                `).join('');
-              } catch (err) {
-                console.error('Failed to load reviews:', err.message);
-                container.innerHTML = `<p style="color:red;">Failed to load reviews: ${err.message}. Please try again later.</p>`;
-              }
-            }
-            loadReviews();
-          </script>
-        </div>
+  <div class="container">
+    <h2 class="section-title">See how we’ve helped projects just like yours succeed</h2>
+    <!--<p class="section-subtitle">Real feedback from our valued customers</p>-->
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <h3 class="review-name">Anastacio</h3>
+        <p class="review-date">a week ago</p>
+        <p class="review-stars">★★★★★</p>
+        <p class="review-text">
+          On time delivery. Very good service and staff. Owner is very coordinating and understanding. With best prices for building materials. My experience was great with Goan Traders.
+        </p>
       </div>
-    </section>
+
+      <div class="review-card">
+        <h3 class="review-name">Saby</h3>
+        <p class="review-date">a week ago</p>
+        <p class="review-stars">★★★★★</p>
+        <p class="review-text">
+          Very good experience every time I purchased cement and other building material. Their service is prompt & reliable, without delays even during heavy rains. Extremely satisfied with the owner, Mr. Walter.
+        </p>
+      </div>
+
+      <div class="review-card">
+        <h3 class="review-name">Ashish Singh</h3>
+        <p class="review-date">in the last week</p>
+        <p class="review-stars">★★★★★</p>
+        <p class="review-text">
+          Great experience staff and service. Thank you for the wonderful experience.
+        </p>
+      </div>
+
+      <div class="review-card">
+        <h3 class="review-name">Pramod Saroj</h3>
+        <p class="review-date">2 weeks ago</p>
+        <p class="review-stars">★★★★★</p>
+        <p class="review-text">
+          Very good service and the dealer is also good and very quick.
+        </p>
+      </div>
+
+      <div class="review-card">
+        <h3 class="review-name">William Dias</h3>
+        <p class="review-date">a week ago</p>
+        <p class="review-stars">★★★★★</p>
+        <p class="review-text">
+          Your reliable partner for your construction materials. Honest, quick and to the point. I would highly recommend Goan Traders for all your building construction materials.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
   </main>
   <Footer />
 </Layout>
@@ -126,145 +122,65 @@ import Footer from '../components/Footer.astro';
     color: #FBBF24;
   }
 
+  /* New Reviews Section Styles */
   .reviews-section {
-    padding: 5rem 0;
-    background: #F9FAFB;
-  }
+  padding: 60px 20px;
+  text-align: center;
+}
 
-  .google-reviews-widget {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 4rem;
-  }
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-  }
+.section-subtitle {
+  color: #666;
+  margin-bottom: 40px;
+}
 
-  .review-card {
-    background: white;
-    border: 1px solid #E5E7EB;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
 
-  .review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-    border-color: #2563EB;
-  }
+.review-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
 
-  .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-    gap: 1rem;
-  }
+.review-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
-  .reviewer-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex: 1;
-    min-width: 0;
-  }
+.review-date {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 5px;
+}
 
-  .reviewer-avatar {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
+.review-stars {
+  color: gold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
 
-  .reviewer-details {
-    min-width: 0;
-  }
+.review-text {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
+}
 
-  .reviewer-details h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1E293B;
-    margin: 0 0 0.25rem 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
-  .reviewer-details p {
-    font-size: 0.875rem;
-    color: #64748B;
-    margin: 0;
-  }
 
-  .review-rating {
-    flex-shrink: 0;
-  }
-
-  .review-rating .stars {
-    color: #FBBF24;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-  }
-
-  .review-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .review-content p {
-    font-size: 0.95rem;
-    color: #334155;
-    line-height: 1.6;
-    margin: 0;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    quotes: """ """;
-  }
-
-  .review-content p::before {
-    content: open-quote;
-  }
-
-  .review-content p::after {
-    content: close-quote;
-  }
-
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .reviews-grid {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 0.5rem;
-    }
-
-    .review-card {
-      padding: 1.5rem;
-    }
-
-    .reviewer-avatar {
-      width: 40px;
-      height: 40px;
-      font-size: 1rem;
     }
   }
 </style>
