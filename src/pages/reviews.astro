@@ -2,6 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const API_KEY = "Add api key here re Boiii";
+const place_id = "Add place id  key here re Boiii";
+
+let reviews = [];
+
+try {
+  const res = await fetch(
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${"ADD PLACE ID INSIDE QUOTES"}&fields=reviews,rating,user_ratings_total&key=${"ADD API INSIDE QUOTES"}`
+  );
+  const data = await res.json();
+
+  if (data.result?.reviews) {
+    reviews = data.result.reviews;
+  }
+} catch (err) {
+  console.error("Error fetching reviews:", err);
+}
 ---
 
 <Layout 
@@ -19,11 +37,9 @@ import Footer from '../components/Footer.astro';
           <p>See what our satisfied customers say about our cement and building materials service</p>
           <div class="rating-summary">
             <div class="stars">
-              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              {Array(5).fill(0).map(() => (
+                <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
             </div>
             <span class="rating-text">4.9/5 based on 150+ reviews</span>
           </div>
@@ -31,61 +47,38 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
-    <!-- Reviews Section -->
+    <!-- Reviews Carousel -->
     <section class="reviews-section">
-  <div class="container">
-    <h2 class="section-title">See how we’ve helped projects just like yours succeed</h2>
-    <!--<p class="section-subtitle">Real feedback from our valued customers</p>-->
+      <div class="container">
+        <h2 class="section-title">See how we’ve helped projects just like yours succeed</h2>
 
-    <div class="reviews-grid">
-      <div class="review-card">
-        <h3 class="review-name">Anastacio</h3>
-        <p class="review-date">a week ago</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-text">
-          On time delivery. Very good service and staff. Owner is very coordinating and understanding. With best prices for building materials. My experience was great with Goan Traders.
-        </p>
+        <div class="carousel-box">
+          <div class="carousel-wrapper">
+            <div class="reviews-carousel">
+  {reviews.length > 0 ? (
+    <>
+      {reviews.concat(reviews).map((r, index) => (
+        <div class="review-card" key={index}>
+          <div class="review-header">
+            <img src={r.profile_photo_url || '/default-avatar.png'} alt={r.author_name} class="review-avatar" />
+            <div>
+              <h3 class="review-name">{r.author_name}</h3>
+              <p class="review-date">{r.relative_time_description}</p>
+            </div>
+          </div>
+          <p class="review-stars">{"★".repeat(r.rating)}</p>
+          <p class="review-text">{r.text}</p>
+        </div>
+      ))}
+    </>
+  ) : (
+    <p>No reviews found.</p>
+  )}
+</div>
+          </div>
+        </div>
       </div>
-
-      <div class="review-card">
-        <h3 class="review-name">Saby</h3>
-        <p class="review-date">a week ago</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-text">
-          Very good experience every time I purchased cement and other building material. Their service is prompt & reliable, without delays even during heavy rains. Extremely satisfied with the owner, Mr. Walter.
-        </p>
-      </div>
-
-      <div class="review-card">
-        <h3 class="review-name">Ashish Singh</h3>
-        <p class="review-date">in the last week</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-text">
-          Great experience staff and service. Thank you for the wonderful experience.
-        </p>
-      </div>
-
-      <div class="review-card">
-        <h3 class="review-name">Pramod Saroj</h3>
-        <p class="review-date">2 weeks ago</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-text">
-          Very good service and the dealer is also good and very quick.
-        </p>
-      </div>
-
-      <div class="review-card">
-        <h3 class="review-name">William Dias</h3>
-        <p class="review-date">a week ago</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-text">
-          Your reliable partner for your construction materials. Honest, quick and to the point. I would highly recommend Goan Traders for all your building construction materials.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
   </main>
   <Footer />
 </Layout>
@@ -96,20 +89,17 @@ import Footer from '../components/Footer.astro';
     margin: 0 auto;
     padding: 0 1rem;
   }
-
   .reviews-hero {
     background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
     color: white;
     padding: 6rem 0 4rem;
     text-align: center;
   }
-
   .hero-content h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
   }
-
   .rating-summary {
     display: flex;
     align-items: center;
@@ -117,70 +107,88 @@ import Footer from '../components/Footer.astro';
     gap: 1rem;
     margin-top: 1rem;
   }
-
   .stars svg {
     color: #FBBF24;
   }
-
-  /* New Reviews Section Styles */
   .reviews-section {
-  padding: 60px 20px;
-  text-align: center;
-}
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-.section-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+  /* Curved border box */
+  .carousel-box {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
 
-.section-subtitle {
-  color: #666;
-  margin-bottom: 40px;
-}
+  /* Carousel wrapper */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #f9f9f9;
+    padding: 15px;
+  }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* Continuous carousel */
+  .reviews-carousel {
+  display: flex;
   gap: 20px;
+  animation: scrollReviews 40s linear infinite;
+}
+
+@keyframes scrollReviews {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); } /* only half, because list is doubled */
 }
 
 .review-card {
+  flex: 0 0 300px;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: left;
 }
-
-.review-name {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.review-date {
-  font-size: 0.85rem;
-  color: #777;
-  margin-bottom: 5px;
-}
-
-.review-stars {
-  color: gold;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.review-text {
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.4;
-}
-
-
-
-  @media (max-width: 640px) {
-    .reviews-grid {
-      grid-template-columns: 1fr;
-    }
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .review-name {
+    font-weight: bold;
+    margin: 0;
+  }
+  .review-date {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0;
+  }
+  .review-stars {
+    color: gold;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  .review-text {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
   }
 </style>
