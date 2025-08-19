@@ -16,7 +16,6 @@ import Footer from '../components/Footer.astro';
     <Hero />
     <ProductCarousel />
     
-    <!-- Features Section -->
     <section class="features-section">
       <div class="container">
         <h2 class="section-title">Why Choose Goa Traders?</h2>
@@ -54,7 +53,6 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
     
-    <!-- Google Map Section -->
     <section class="map-section">
       <div class="container">
         <h2 class="section-title">Visit Our Store</h2>
@@ -86,18 +84,25 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  /* Your original styles for the Features section */
   .features-section {
     padding: 5rem 0;
     background: white;
   }
-  
+  .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+  }
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
   }
-  
   .feature-card {
     background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
     padding: 2rem;
@@ -106,35 +111,31 @@ import Footer from '../components/Footer.astro';
     border: 1px solid #E2E8F0;
     transition: all 0.3s ease;
   }
-  
   .feature-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     border-color: #2563EB;
   }
-  
   .feature-icon {
     color: #2563EB;
     margin-bottom: 1.5rem;
   }
-  
   .feature-card h3 {
     font-size: 1.25rem;
     font-weight: 600;
     color: #1E293B;
     margin-bottom: 1rem;
   }
-  
   .feature-card p {
     color: #64748B;
     line-height: 1.6;
   }
   
+  /* Your original styles for the Map section */
   .map-section {
     padding: 5rem 0;
     background: white;
   }
-  
   .map-description {
     text-align: center;
     font-size: 1.1rem;
@@ -144,14 +145,12 @@ import Footer from '../components/Footer.astro';
     margin-left: auto;
     margin-right: auto;
   }
-  
   .map-container {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     margin-bottom: 3rem;
   }
-  
   .contact-cta {
     text-align: center;
     background: linear-gradient(135deg, #FFF8F3 0%, #FFF3E0 100%);
@@ -159,14 +158,12 @@ import Footer from '../components/Footer.astro';
     border-radius: 16px;
     margin-top: 3rem;
   }
-  
   .contact-cta h3 {
     font-size: 2rem;
     font-weight: 600;
     color: #1E293B;
     margin-bottom: 1rem;
   }
-  
   .contact-cta p {
     font-size: 1.1rem;
     color: #64748B;
@@ -175,7 +172,6 @@ import Footer from '../components/Footer.astro';
     margin-left: auto;
     margin-right: auto;
   }
-  
   .cta-buttons {
     display: flex;
     justify-content: center;
@@ -183,32 +179,59 @@ import Footer from '../components/Footer.astro';
     flex-wrap: wrap;
   }
   
+  /* --- FIX: Added the missing button styles for consistency --- */
+  .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  }
+  .btn-secondary {
+    background: #F8FAFC;
+    color: #1E293B;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E2E8F0;
+  }
+  .btn-secondary:hover {
+    background: #E2E8F0;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Your original responsive styles */
   @media (max-width: 768px) {
     .map-section {
       padding: 3rem 0;
     }
-    
     .features-section {
       padding: 3rem 0;
     }
-    
     .features-grid {
       grid-template-columns: 1fr;
     }
-    
     .contact-cta {
       padding: 2rem 1rem;
     }
-    
     .contact-cta h3 {
       font-size: 1.5rem;
     }
-    
     .cta-buttons {
       flex-direction: column;
       align-items: center;
     }
-    
     .cta-buttons .btn {
       width: 200px;
     }

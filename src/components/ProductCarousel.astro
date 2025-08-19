@@ -1,4 +1,8 @@
 ---
+import { products as allProducts } from '../data/products.js';
+
+const shuffledProducts = allProducts.sort(() => 0.5 - Math.random());
+const featuredProducts = shuffledProducts.slice(0, 6);
 ---
 
 <section class="product-carousel-section">
@@ -9,175 +13,36 @@
     <div class="carousel-container">
       <div class="carousel-wrapper">
         <div class="carousel-track" id="carousel-track">
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=400&h=600" alt="JK Cement bags - Premium white and grey cement dealer in Goa" loading="lazy">
-            </div>
-            <div class="product-info">
-              <h3>JK Cement</h3>
-              <p>Premium quality white & grey cement for all construction needs</p>
-              <div class="product-rating">
-                <div class="stars">
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
+          {featuredProducts.map(product => (
+            <div class="product-card">
+              <div class="product-image">
+                <img src={product.image} alt={product.alt} loading="lazy" />
+              </div>
+              <div class="product-info">
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                {product.rating && (
+                  <div class="product-rating">
+                    <div class="stars">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <span class="star">{i < product.rating ? '★' : '☆'}</span>
+                      ))}
+                    </div>
+                    <span class="rating-text">{product.ratingText}</span>
+                  </div>
+                )}
+                <div class="product-features">
+                  {product.features.slice(0, 2).map(feature => (
+                    <span class="feature">{feature}</span>
+                  ))}
                 </div>
-                <span class="rating-text">4.9/5</span>
-              </div>
-              <div class="product-features">
-                <span class="feature">OPC & PPC</span>
-                <span class="feature">High Strength</span>
-              </div>
-              <div class="product-actions">
-                <a href="/contact" class="btn btn-primary">Get Quote</a>
-                <a href="/products#jk-cement" class="btn btn-secondary btn-sm">View Details</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=400&h=600" alt="JSW Cement supplier in Goa - Best quality cement" loading="lazy">
-            </div>
-            <div class="product-info">
-              <h3>JSW Cement</h3>
-              <p>Superior grade cement with GGBS technology for enhanced durability</p>
-              <div class="product-rating">
-                <div class="stars">
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
+                <div class="product-actions">
+                  <a href="/contact" class="btn btn-primary">Get Quote</a>
+                  <a href={`/products#${product.brand.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} class="btn btn-secondary btn-sm">View Details</a>
                 </div>
-                <span class="rating-text">4.8/5</span>
-              </div>
-              <div class="product-features">
-                <span class="feature">GGBS</span>
-                <span class="feature">Eco-Friendly</span>
-              </div>
-              <div class="product-actions">
-                <a href="/contact" class="btn btn-primary">Get Quote</a>
-                <a href="/products#jsw-cement" class="btn btn-secondary btn-sm">View Details</a>
               </div>
             </div>
-          </div>
-          
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=400&h=600" alt="Ultratech Cement dealer Goa - Buy cement online" loading="lazy">
-            </div>
-            <div class="product-info">
-              <h3>Ultratech Cement</h3>
-              <p>India's leading cement brand with consistent quality and strength</p>
-              <div class="product-rating">
-                <div class="stars">
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                </div>
-                <span class="rating-text">4.9/5</span>
-              </div>
-              <div class="product-features">
-                <span class="feature">53 Grade</span>
-                <span class="feature">Fast Setting</span>
-              </div>
-              <div class="product-actions">
-                <a href="/contact" class="btn btn-primary">Get Quote</a>
-                <a href="/products#ultratech" class="btn btn-secondary btn-sm">View Details</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg?auto=compress&cs=tinysrgb&w=400&h=600" alt="Ramco Cement supplier Goa - Quality cement for construction" loading="lazy">
-            </div>
-            <div class="product-info">
-              <h3>Ramco Cement</h3>
-              <p>Trusted cement brand known for exceptional compressive strength</p>
-              <div class="product-rating">
-                <div class="stars">
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                </div>
-                <span class="rating-text">4.8/5</span>
-              </div>
-              <div class="product-features">
-                <span class="feature">Super Grade</span>
-                <span class="feature">Weather Resistant</span>
-              </div>
-              <div class="product-actions">
-                <a href="/contact" class="btn btn-primary">Get Quote</a>
-                <a href="/products#ramco" class="btn btn-secondary btn-sm">View Details</a>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.pexels.com/photos/1586298/pexels-photo-1586298.jpeg?auto=compress&cs=tinysrgb&w=400&h=600" alt="Ramco Cement supplier Goa - Quality cement for construction" loading="lazy">
-            </div>
-            <div class="product-info">
-              <h3>Ramcoooooooo Cement</h3>
-              <p>Trusted cement brand known for exceptional compressive strength</p>
-              <div class="product-rating">
-                <div class="stars">
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                </div>
-                <span class="rating-text">4.8/5</span>
-              </div>
-              <div class="product-features">
-                <span class="feature">Super Grade</span>
-                <span class="feature">Weather Resistant</span>
-              </div>
-              <div class="product-actions">
-                <a href="/contact" class="btn btn-primary">Get Quote</a>
-                <a href="/products#ramco" class="btn btn-secondary btn-sm">View Details</a>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.pexels.com/photos/162539/architecture-building-construction-work-162539.jpeg?auto=compress&cs=tinysrgb&w=400&h=600" alt="River sand supplier Goa - Construction sand for building" loading="lazy">
-            </div>
-            <div class="product-info">
-              <h3>River Sand</h3>
-              <p>Premium quality coarse and fine sand for construction projects</p>
-              <div class="product-rating">
-                <div class="stars">
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                  <span class="star">★</span>
-                </div>
-                <span class="rating-text">4.7/5</span>
-              </div>
-              <div class="product-features">
-                <span class="feature">Washed Sand</span>
-                <span class="feature">Various Grades</span>
-              </div>
-              <div class="product-actions">
-                <a href="/contact" class="btn btn-primary">Get Quote</a>
-                <a href="/products#sand" class="btn btn-secondary btn-sm">View Details</a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       
@@ -195,260 +60,34 @@
     </div>
     
     <div class="carousel-dots">
-      <button class="dot active" data-slide="0"></button>
-      <button class="dot" data-slide="1"></button>
-      <button class="dot" data-slide="2"></button>
-      <button class="dot" data-slide="3"></button>
-      <button class="dot" data-slide="4"></button>
+      {featuredProducts.map((_, index) => (
+        <button class:list={["dot", { active: index === 0 }]} data-slide={index}></button>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
-  .product-carousel-section {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-  }
+  /* --- The only change is in the .product-image and .product-image img sections below --- */
   
-  .section-subtitle {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #64748B;
-    margin-bottom: 3rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .carousel-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 16px;
-  }
-  
-  .carousel-wrapper {
-    overflow: hidden;
-  }
-  
-  .carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    gap: 1.5rem;
-  }
-  
-  .product-card {
-    flex: 0 0 300px;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
+  .product-carousel-section{padding:5rem 0;background:linear-gradient(135deg,#F8FAFC 0%,#F1F5F9 100%)}.section-subtitle{text-align:center;font-size:1.1rem;color:#64748B;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}.carousel-container{position:relative;max-width:1200px;margin:0 auto;overflow:hidden;border-radius:16px}.carousel-wrapper{overflow:hidden}.carousel-track{display:flex;transition:transform .5s ease-in-out;gap:1.5rem}.product-card{flex:0 0 300px;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);transition:all .3s ease}.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
   
   .product-image {
     position: relative;
     height: 250px;
     overflow: hidden;
+    /* Added a white background for a clean look */
+    background-color: #fff;
   }
-  
   .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* This is the key change: from 'cover' to 'contain' */
+    object-fit: contain;
     transition: transform 0.3s ease;
   }
-  
-  .product-card:hover .product-image img {
-    transform: scale(1.05);
-  }
-  
-  .product-info {
-    padding: 1.5rem;
-  }
-  
-  .product-info h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1E293B;
-    margin-bottom: 0.5rem;
-  }
-  
-  .product-info p {
-    color: #64748B;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-    font-size: 0.9rem;
-  }
-  
-  .product-rating {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .stars {
-    display: flex;
-    gap: 2px;
-  }
-  
-  .star {
-    color: #FBBF24;
-    font-size: 0.9rem;
-  }
-  
-  .rating-text {
-    font-size: 0.8rem;
-    color: #64748B;
-    font-weight: 500;
-  }
-  
-  .product-features {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .feature {
-    background: #EFF6FF;
-    color: #1D4ED8;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-  }
-  
-  .product-actions {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    flex: 1;
-    min-width: 100px;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
-  
-  .carousel-btn:hover {
-    background: #2563EB;
-    color: white;
-    transform: translateY(-50%) scale(1.1);
-  }
-  
-  .carousel-btn-prev {
-    left: 5px;
-  }
-  
-  .carousel-btn-next {
-    right: 5px;
-  }
-  
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-  }
-  
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: #CBD5E1;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .dot.active {
-    background: #2563EB;
-    transform: scale(1.2);
-  }
-  
-  @media (max-width: 768px) {
-    .product-carousel-section {
-      padding: 3rem 0;
-    }
-    
-    .product-card {
-      flex: 0 0 280px;
-    }
-    
-    .carousel-btn {
-      width: 40px;
-      height: 40px;
-    }
-    
-    .carousel-btn-prev {
-      left: -20px;
-    }
-    
-    .carousel-btn-next {
-      right: -20px;
-    }
-    
-    .product-info {
-      padding: 1rem;
-    }
-    
-    .product-info h3 {
-      font-size: 1.1rem;
-    }
-    
-    .product-actions {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .btn-sm {
-      min-width: auto;
-      width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .product-card {
-      flex: 0 0 250px;
-    }
-    
-    .carousel-btn {
-      display: none;
-    }
-  }
+
+  .product-card:hover .product-image img{transform:scale(1.05)}.product-info{padding:1.5rem}.product-info h3{font-size:1.25rem;font-weight:600;color:#1E293B;margin-bottom:0.5rem}.product-info p{color:#64748B;margin-bottom:1rem;line-height:1.5;font-size:0.9rem}.product-rating{display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem}.stars{display:flex;gap:2px}.star{color:#FBBF24;font-size:0.9rem}.rating-text{font-size:0.8rem;color:#64748B;font-weight:500}.product-features{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap}.feature{background:#EFF6FF;color:#1D4ED8;padding:0.25rem 0.75rem;border-radius:20px;font-size:0.75rem;font-weight:500}.product-actions{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;align-items:center}.btn-sm{padding:0.5rem 1rem;font-size:0.8rem;flex:1;min-width:100px;text-align:center;display:inline-flex;align-items:center;justify-content:center}.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:white;border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all .3s ease;z-index:10}.carousel-btn:hover{background:#2563EB;color:white;transform:translateY(-50%) scale(1.1)}.carousel-btn-prev{left:5px}.carousel-btn-next{right:5px}.carousel-dots{display:flex;justify-content:center;gap:0.5rem;margin-top:2rem}.dot{width:12px;height:12px;border-radius:50%;border:none;background:#CBD5E1;cursor:pointer;transition:all .3s ease}.dot.active{background:#2563EB;transform:scale(1.2)}@media (max-width: 768px){.product-carousel-section{padding:3rem 0}.product-card{flex:0 0 280px}.carousel-btn{width:40px;height:40px}.carousel-btn-prev{left:-20px}.carousel-btn-next{right:-20px}.product-info{padding:1rem}.product-info h3{font-size:1.1rem}.product-actions{flex-direction:column;gap:0.75rem}.btn-sm{min-width:auto;width:100%}}@media (max-width: 480px){.product-card{flex:0 0 250px}.carousel-btn{display:none}}
 </style>
 
 <script>
@@ -460,65 +99,57 @@ document.addEventListener('DOMContentLoaded', function() {
   const carouselContainer = document.querySelector('.carousel-container');
 
   if (!track || !prevBtn || !nextBtn || !dots.length) {
-    console.warn('Carousel elements not found');
     return;
   }
 
   const originalSlides = Array.from(track.children);
-  const slideWidth = 300 + 24; // card width + gap
+  const slideWidth = originalSlides[0].offsetWidth + 24;
 
-  // Clone before and after
   originalSlides.forEach(slide => {
     track.appendChild(slide.cloneNode(true));
   });
-  originalSlides.forEach(slide => {
+   originalSlides.slice().reverse().forEach(slide => {
     track.insertBefore(slide.cloneNode(true), track.firstChild);
   });
 
   const totalSlides = originalSlides.length;
-  let currentIndex = totalSlides; // start at first real slide
+  let currentIndex = totalSlides; 
   let isTransitioning = false;
 
-  // Set initial position
   track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
 
   function updateDots() {
+    const realIndex = (currentIndex - totalSlides) % totalSlides;
     dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === (currentIndex % totalSlides + totalSlides) % totalSlides);
+      dot.classList.toggle('active', index === realIndex);
     });
   }
 
   function moveToIndex(index) {
+    if (isTransitioning) return;
     isTransitioning = true;
     track.style.transition = 'transform 0.5s ease-in-out';
     track.style.transform = `translateX(${-index * slideWidth}px)`;
     currentIndex = index;
+    updateDots();
   }
 
-  function handleTransitionEnd() {
+  track.addEventListener('transitionend', () => {
     isTransitioning = false;
     if (currentIndex >= totalSlides * 2) {
       currentIndex = totalSlides;
       track.style.transition = 'none';
       track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
     } else if (currentIndex < totalSlides) {
-      currentIndex = totalSlides + (currentIndex % totalSlides);
+      currentIndex = totalSlides * 2 -1;
       track.style.transition = 'none';
       track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
     }
-    updateDots();
-  }
+  });
 
-  function nextSlide() {
-    if (!isTransitioning) moveToIndex(currentIndex + 1);
-  }
+  const nextSlide = () => moveToIndex(currentIndex + 1);
+  const prevSlide = () => moveToIndex(currentIndex - 1);
 
-  function prevSlide() {
-    if (!isTransitioning) moveToIndex(currentIndex - 1);
-  }
-
-  // Event listeners
-  track.addEventListener('transitionend', handleTransitionEnd);
   nextBtn.addEventListener('click', nextSlide);
   prevBtn.addEventListener('click', prevSlide);
 
@@ -527,36 +158,11 @@ document.addEventListener('DOMContentLoaded', function() {
       moveToIndex(totalSlides + index);
     });
   });
-
-  // Auto-play
+  
   let autoPlay = setInterval(nextSlide, 5000);
-  if (carouselContainer) {
-    carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
-    carouselContainer.addEventListener('mouseleave', () => autoPlay = setInterval(nextSlide, 5000));
-  }
-
-  // Keyboard
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') prevSlide();
-    else if (e.key === 'ArrowRight') nextSlide();
-  });
-
-  // Swipe
-  let startX = 0, endX = 0;
-  if (carouselContainer) {
-    carouselContainer.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    carouselContainer.addEventListener('touchend', e => {
-      endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) nextSlide();
-        else prevSlide();
-      }
-    });
-  }
+  carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
+  carouselContainer.addEventListener('mouseleave', () => autoPlay = setInterval(nextSlide, 5000));
 
   updateDots();
 });
 </script>
-
-

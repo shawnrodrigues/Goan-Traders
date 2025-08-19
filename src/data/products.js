@@ -1,0 +1,118 @@
+export const products = [
+  // JK Cement
+  {
+    id: 'JK-Super-wayne-PSC',
+    brand: 'JK Cement',
+    category: 'cement',
+    name: 'JK wayne Strong',
+    description: "The foundation of your success. Engineered for superior strength and lasting durability.",
+    image: '/src/media/JK-strong-PSC-1-2-1.png',
+    alt: 'JK-Super-Strong-PSC - Best cement dealer in Goa',
+    badge: { text: 'Bestseller', class: '' },
+    specs: { 'Grade': 'OPC 53', 'Strength': '53 MPa', 'Pack Size': '50 kg', 'Applications': 'High-rise buildings, bridges, industrial structures' },
+    features: ['53 Grade', 'High Strength', 'Fast Setting'],
+    rating: 5,
+    ratingText: '4.9/5'
+  },
+  {
+    id: 'JK-Super-Noob-PSC',
+    brand: 'JK Cement',
+    category: 'cement',
+    name: 'JK Super Strong',
+    description: "The foundation of your success. Engineered for superior strength and lasting durability.",
+    image: '/src/media/JK-strong-PSC-1-2-1.png',
+    alt: 'JK-Super-Strong-PSC - Best cement dealer in Goa',
+    badge: { text: 'Bestseller', class: '' },
+    specs: { 'Grade': 'OPC 53', 'Strength': '53 MPa', 'Pack Size': '50 kg', 'Applications': 'High-rise buildings, bridges, industrial structures' },
+    features: ['53 Grade', 'High Strength', 'Fast Setting'],
+    rating: 5,
+    ratingText: '4.9/5'
+  },
+  {
+    id: 'JK-Super-shawn-PSC',
+    brand: 'JK Cement',
+    category: 'cement',
+    name: 'JK Super Strong',
+    description: "The foundation of your success. Engineered for superior strength and lasting durability.",
+    image: '/src/media/JK-strong-PSC-1-2-1.png',
+    alt: 'JK-Super-Strong-PSC - Best cement dealer in Goa',
+    badge: { text: 'Bestseller', class: '' },
+    specs: { 'Grade': 'OPC 53', 'Strength': '53 MPa', 'Pack Size': '50 kg', 'Applications': 'High-rise buildings, bridges, industrial structures' },
+    features: ['53 Grade', 'High Strength', 'Fast Setting'],
+    rating: 5,
+    ratingText: '4.9/5'
+  },
+  {
+    id: 'JK-Super-wayne-PSC',
+    brand: 'JK Cement',
+    category: 'cement',
+    name: 'JK Super Strong',
+    description: "The foundation of your success. Engineered for superior strength and lasting durability.",
+    image: '/src/media/JK-strong-PSC-1-2-1.png',
+    alt: 'JK-Super-Strong-PSC - Best cement dealer in Goa',
+    badge: { text: 'Bestseller', class: '' },
+    specs: { 'Grade': 'OPC 53', 'Strength': '53 MPa', 'Pack Size': '50 kg', 'Applications': 'High-rise buildings, bridges, industrial structures' },
+    features: ['53 Grade', 'High Strength', 'Fast Setting'],
+    rating: 5,
+    ratingText: '4.9/5'
+  },
+  {
+    id: 'jk-ppc',
+    brand: 'JK Cement',
+    category: 'cement',
+    name: 'JK Cement PPC',
+    description: 'Portland Pozzolana Cement offering excellent workability and reduced heat of hydration.',
+    image: 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=400&h=600',
+    alt: 'JK Cement PPC - Portland Pozzolana Cement supplier Goa',
+    badge: null,
+    specs: { 'Grade': 'PPC', 'Strength': '33 MPa', 'Pack Size': '50 kg', 'Applications': 'Residential buildings, mass concrete works' },
+    features: ['PPC Grade', 'Eco-Friendly', 'Good Workability'],
+    rating: 5,
+    ratingText: '4.8/5'
+  },
+  // JSW Cement
+  {
+    id: 'jsw-ggbs',
+    brand: 'JSW Cement',
+    category: 'cement',
+    name: 'JSW GGBS Cement',
+    description: 'Advanced cement with Ground Granulated Blast Furnace Slag technology for superior durability.',
+    image: 'https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=400&h=600',
+    alt: 'JSW GGBS Cement - Green cement supplier in Goa',
+    badge: { text: 'Eco-Friendly', class: 'eco' },
+    specs: { 'Technology': 'GGBS', 'Strength': '43 MPa', 'Pack Size': '50 kg', 'Applications': 'Sustainable construction, high-performance structures' },
+    features: ['GGBS Technology', 'Sustainable', 'High Performance'],
+    rating: 5,
+    ratingText: '4.8/5'
+  },
+  // river-sand-fine
+  {
+    id: 'river-sand-fine',
+    brand: 'Sand & Aggregates',
+    category: 'sand',
+    name: 'River Sand (Fine)',
+    description: 'Fine grade river sand ideal for plastering, flooring, and finishing work.',
+    image: 'https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=400&h=600',
+    alt: 'Fine sand supplier Goa - Plastering sand dealer',
+    badge: null,
+    specs: { 'Type': 'Fine Sand', 'Size': '0.5-2mm', 'Unit': 'Per Ton', 'Applications': 'Plastering, flooring, finishing work' },
+    features: ['Fine Grade', 'Plastering', 'Smooth Finish'],
+    rating: 4,
+    ratingText: '4.7/5'
+  },
+  // chemicals
+  {
+    id: 'chemical-a',
+    brand: 'Chemicals',
+    category: 'chemicals',
+    name: 'Chemical A',
+    description: 'High-performance chemical for construction applications.',
+    image: 'https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=400&h=600',
+    alt: 'Chemical A supplier Goa',
+    badge: null,
+    specs: { 'Type': 'Admixture', 'Pack Size': '20 kg', 'Applications': 'Concrete, mortar' },
+    features: ['Improves Workability', 'Reduces Water Demand'],
+    rating: 5,
+    ratingText: '4.9/5'
+  },
+];

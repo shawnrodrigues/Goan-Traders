@@ -12,93 +12,140 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main>
     <section class="terms-hero">
+      <div class="hero-pattern"></div>
       <div class="container">
         <div class="hero-content">
+          <nav class="breadcrumbs">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span>Terms of Service</span>
+          </nav>
           <h1>Terms of Service</h1>
-          <p>Terms and conditions for using our cement and building materials services</p>
+          <p>Your agreement with us for using our services and purchasing our materials.</p>
         </div>
       </div>
     </section>
     
     <section class="terms-content">
-      <div class="container">
-        <div class="content-wrapper">
+      <div class="container terms-layout">
+        
+        <aside class="terms-nav">
+          <nav>
+            <p class="nav-title">On this page</p>
+            <ul>
+              <li><a href="#acceptance">Acceptance of Terms</a></li>
+              <li><a href="#services">Services Provided</a></li>
+              <li><a href="#ordering">Ordering & Payment</a></li>
+              <li><a href="#delivery">Delivery Terms</a></li>
+              <li><a href="#quality">Quality Assurance</a></li>
+              <li><a href="#liability">Limitation of Liability</a></li>
+              <li><a href="#returns">Returns & Refunds</a></li>
+              <li><a href="#contact">Contact Information</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="terms-main-content">
           <div class="last-updated">
-            <p><strong>Last Updated:</strong> January 2025</p>
+            <p><strong>Last Updated:</strong> August 19, 2025</p>
           </div>
           
-          <div class="terms-section">
-            <h2>Acceptance of Terms</h2>
-            <p>By using Goa Traders' services, you agree to these terms and conditions. If you do not agree with any part of these terms, please do not use our services.</p>
+          <div id="acceptance" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" /></svg>
+              Acceptance of Terms
+            </h2>
+            <p>By engaging with, ordering from, or using the services of Goa Traders, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must refrain from using our services.</p>
           </div>
           
-          <div class="terms-section">
-            <h2>Services Provided</h2>
-            <p>Goa Traders provides:</p>
+          <div id="services" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.6,12L19,9.9L20.4,11.3L22,10.7L19.9,6.3L18.5,7.7L14.1,5.6L13.5,4.2L16.4,3.3L15.8,1.9L12.9,2.8L12,0L11.1,2.8L8.2,1.9L7.6,3.3L10.5,4.2L9.9,5.6L5.5,7.7L4.1,6.3L2,10.7L3.6,11.3L5,9.9L9.4,12L5,14.1L3.6,12.7L2,13.3L4.1,17.7L5.5,16.3L9.9,18.4L10.5,19.8L7.6,20.7L8.2,22.1L11.1,21.2L12,24L12.9,21.2L15.8,22.1L16.4,20.7L13.5,19.8L14.1,18.4L18.5,16.3L19.9,17.7L22,13.3L20.4,12.7L19,14.1L14.6,12Z" /></svg>
+              Services Provided
+            </h2>
+            <p>Goa Traders is a supplier of high-quality building and construction materials. Our primary services include:</p>
             <ul>
-              <li>Supply of cement (JK, JSW, Ultratech, Ramco brands)</li>
-              <li>River sand and construction aggregates</li>
-              <li>Building materials delivery across Goa</li>
-              <li>Construction material consultation services</li>
+              <li>Supply of premium cement from brands including JK, JSW, Ultratech, and Ramco.</li>
+              <li>Provision of river sand and various construction aggregates.</li>
+              <li>Efficient, site-wide delivery of building materials across Goa.</li>
+              <li>Expert consultation on material selection and usage.</li>
             </ul>
           </div>
           
-          <div class="terms-section">
-            <h2>Ordering and Payment</h2>
+          <div id="ordering" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5.5H6.44L5.23,2H1M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z" /></svg>
+              Ordering and Payment
+            </h2>
             <ul>
-              <li>All orders are subject to availability and confirmation</li>
-              <li>Prices are subject to change without notice</li>
-              <li>Payment terms will be discussed at the time of order</li>
-              <li>We reserve the right to refuse any order</li>
+              <li>All orders are subject to material availability and final confirmation from our team.</li>
+              <li>Prices for materials are dynamic and may change without prior notice due to market fluctuations.</li>
+              <li>Specific payment terms, including credit options, will be clearly communicated and agreed upon at the time of order placement.</li>
+              <li>Goa Traders reserves the right to refuse or cancel any order at its discretion.</li>
             </ul>
           </div>
           
-          <div class="terms-section">
-            <h2>Delivery Terms</h2>
+          <div id="delivery" class="terms-section">
+            <h2>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,8L15,4H13V12H15.5C17.43,12 19,10.43 19,8.5C19,7.35 18.39,6.38 17.5,5.81V8H20M8,12H4V22H2V12H0V10H8V12M22,12H10V10H22V12M11.5,14C9.57,14 8,15.57 8,17.5C8,19.43 9.57,21 11.5,21C13.43,21 15,19.43 15,17.5C15,15.57 13.43,14 11.5,14Z" /></svg>
+              Delivery Terms
+            </h2>
             <ul>
-              <li>Delivery is available across Goa as per our service areas</li>
-              <li>Delivery charges may apply based on location and quantity</li>
-              <li>Delivery times are estimates and may vary due to weather or traffic</li>
-              <li>Customer must provide adequate access for delivery vehicles</li>
+              <li>Our delivery network covers all designated service areas within Goa.</li>
+              <li>Applicable delivery charges will be calculated based on order volume and distance to the delivery site.</li>
+              <li>Estimated delivery times are provided in good faith but are not guaranteed, as they can be affected by traffic, weather, and other unforeseen circumstances.</li>
+              <li>The customer is responsible for ensuring clear and safe access for our delivery vehicles to the drop-off point.</li>
+            </ul>
+          </div>
+
+          <div id="quality" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M17.5,17.5C15.83,19.17 13.83,20 12,20C10.17,20 8.17,19.17 6.5,17.5V16C6.5,14.17 9.83,13 12,13C14.17,13 17.5,14.17 17.5,16V17.5Z" /></svg>
+              Quality Assurance
+            </h2>
+            <p>We are committed to providing only the best materials. We guarantee that:</p>
+            <ul>
+              <li>All cement and branded products are 100% genuine and sourced from authorized manufacturers.</li>
+              <li>All materials are stored and handled under proper conditions to maintain their integrity.</li>
+              <li>Our products consistently meet or exceed relevant industry standards and specifications.</li>
             </ul>
           </div>
           
-          <div class="terms-section">
-            <h2>Quality Assurance</h2>
-            <p>We guarantee:</p>
+          <div id="liability" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+              Limitation of Liability
+            </h2>
+            <p>Goa Traders' liability shall be strictly limited to the replacement cost or refund of any supplied materials proven to be defective. We shall not be held liable for any indirect, incidental, consequential, or punitive damages arising from the use, misuse, or inability to use our products or services, including but not limited to labor costs or project delays.</p>
+          </div>
+          
+          <div id="returns" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5,8C9.85,8 7.45,9 5.6,10.6L2,7V16H11L7.38,12.38C8.77,11.22 10.54,10.5 12.5,10.5C16.04,10.5 19.05,12.81 20.1,16L22.47,15.22C21.08,11.03 17.15,8 12.5,8Z" /></svg>
+              Returns and Refunds
+            </h2>
             <ul>
-              <li>All cement products are from authorized manufacturers</li>
-              <li>Materials are stored in proper conditions</li>
-              <li>Products meet industry standards and specifications</li>
-              <li>Any quality issues will be addressed promptly</li>
+              <li>Returns will be considered only for products that are defective or damaged upon delivery.</li>
+              <li>All claims for returns must be reported to us within 24 hours of receiving the materials.</li>
+              <li>Returned products must be in their original, unopened condition.</li>
+              <li>Refunds or replacements will be processed following a satisfactory inspection of the returned items.</li>
             </ul>
           </div>
           
-          <div class="terms-section">
-            <h2>Limitation of Liability</h2>
-            <p>Goa Traders' liability is limited to the replacement or refund of defective materials. We are not liable for any indirect, incidental, or consequential damages arising from the use of our products or services.</p>
-          </div>
-          
-          <div class="terms-section">
-            <h2>Returns and Refunds</h2>
-            <ul>
-              <li>Returns are accepted only for defective or damaged products</li>
-              <li>Claims must be made within 24 hours of delivery</li>
-              <li>Products must be in original condition for returns</li>
-              <li>Refunds will be processed after inspection of returned items</li>
-            </ul>
-          </div>
-          
-          <div class="terms-section">
-            <h2>Contact Information</h2>
-            <p>For questions about these terms or our services:</p>
+          <div id="contact" class="terms-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+              Contact Information
+            </h2>
+            <p>For any questions, clarifications, or concerns regarding these terms, please reach out to us:</p>
             <div class="contact-info">
               <p><strong>Phone:</strong> <a href="tel:+919765664489">+91-9765664489</a></p>
-              <p><strong>WhatsApp:</strong> <a href="https://wa.me/919765664489">Message Us</a></p>
+              <p><strong>WhatsApp:</strong> <a href="https://wa.me/919765664489" target="_blank">Message Us on WhatsApp</a></p>
               <p><strong>Service Area:</strong> All of Goa</p>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   </main>
@@ -106,88 +153,208 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  :root {
+    --primary-blue: #2563EB;
+    --dark-blue: #1D4ED8;
+    --light-gray: #F8FAFC;
+    --border-gray: #E2E8F0;
+    --text-dark: #1E293B;
+    --text-light: #475569;
+  }
+
   .terms-hero {
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    background: var(--dark-blue);
     color: white;
-    padding: 6rem 0 4rem;
-    text-align: center;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 100% 0, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 15%),
+      radial-gradient(circle at 0 100%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 15%);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .breadcrumbs {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .breadcrumbs a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .breadcrumbs a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .breadcrumbs span {
+    margin: 0 0.5rem;
   }
   
   .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5rem;
   }
   
   .hero-content p {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     opacity: 0.95;
     max-width: 600px;
-    margin: 0 auto;
   }
   
   .terms-content {
-    padding: 5rem 0;
-    background: white;
+    padding: 4rem 0;
+    background: #F1F5F9; /* A slightly off-white background for contrast */
+  }
+
+  .terms-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
   }
   
-  .content-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
+  /* Sidebar Navigation */
+  .terms-nav {
+    flex: 0 0 250px; /* Do not grow, do not shrink, base width 250px */
+    position: sticky;
+    top: 2rem; /* Adjust this based on your header height */
   }
   
+  .terms-nav .nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .terms-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 2px solid var(--border-gray);
+  }
+
+  .terms-nav li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+  }
+
+  .terms-nav li a:hover {
+    color: var(--primary-blue);
+    background: #eef2ff; /* Light blue hover */
+    border-left-color: var(--primary-blue);
+    transform: translateX(4px);
+  }
+  
+  /* Main Content Area */
+  .terms-main-content {
+    flex: 1;
+    min-width: 0; /* Prevents flex items from overflowing */
+  }
+
   .last-updated {
-    background: #F8FAFC;
-    padding: 1rem;
+    background: var(--light-gray);
+    padding: 1rem 1.5rem;
     border-radius: 8px;
-    margin-bottom: 3rem;
-    border-left: 4px solid #2563EB;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-blue);
   }
   
   .terms-section {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    scroll-margin-top: 2rem; /* Offset for anchor links */
   }
   
   .terms-section h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    color: #1E293B;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #E2E8F0;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .terms-section h2 svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--primary-blue);
+    flex-shrink: 0;
   }
   
   .terms-section p {
-    color: #475569;
+    color: var(--text-light);
     line-height: 1.7;
     margin-bottom: 1rem;
   }
   
   .terms-section ul {
-    color: #475569;
+    color: var(--text-light);
     line-height: 1.7;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+    list-style: none;
+    padding-left: 1rem;
   }
   
   .terms-section li {
-    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .terms-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--primary-blue);
+    font-weight: 700;
   }
   
   .contact-info {
-    background: #F8FAFC;
+    background: var(--light-gray);
     padding: 1.5rem;
     border-radius: 8px;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
   
   .contact-info p {
     margin-bottom: 0.5rem;
   }
+  .contact-info p:last-child {
+    margin-bottom: 0;
+  }
   
   .contact-info a {
-    color: #2563EB;
+    color: var(--primary-blue);
+    font-weight: 500;
     text-decoration: none;
   }
   
@@ -195,17 +362,38 @@ import Footer from '../components/Footer.astro';
     text-decoration: underline;
   }
   
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .terms-layout {
+      flex-direction: column;
+    }
+    .terms-nav {
+      position: static;
+      width: 100%;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gray);
+      padding-bottom: 1rem;
+    }
+    .terms-nav ul {
+      border-left: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .terms-nav li a {
+      border: 1px solid var(--border-gray);
+      border-radius: 20px;
+      margin-left: 0;
+    }
+    .terms-nav li a:hover {
+      transform: none;
+    }
+  }
+
   @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-    
-    .terms-content {
-      padding: 3rem 0;
-    }
-    
-    .terms-section h2 {
-      font-size: 1.5rem;
-    }
+    .hero-content h1 { font-size: 2rem; }
+    .terms-content { padding: 3rem 0; }
+    .terms-section { padding: 1.5rem; }
+    .terms-section h2 { font-size: 1.4rem; }
   }
 </style>

@@ -12,85 +12,127 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main>
     <section class="privacy-hero">
+      <div class="hero-pattern"></div>
       <div class="container">
         <div class="hero-content">
+          <nav class="breadcrumbs">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span>Privacy Policy</span>
+          </nav>
           <h1>Privacy Policy</h1>
-          <p>Your privacy is important to us. Learn how we protect your information.</p>
+          <p>Your privacy is important to us. Here's how we collect, use, and protect your information.</p>
         </div>
       </div>
     </section>
     
     <section class="privacy-content">
-      <div class="container">
-        <div class="content-wrapper">
+      <div class="container privacy-layout">
+        
+        <aside class="privacy-nav">
+          <nav>
+            <p class="nav-title">Policy Sections</p>
+            <ul>
+              <li><a href="#collection">Information We Collect</a></li>
+              <li><a href="#usage">How We Use Information</a></li>
+              <li><a href="#sharing">Information Sharing</a></li>
+              <li><a href="#security">Data Security</a></li>
+              <li><a href="#whatsapp">WhatsApp Communication</a></li>
+              <li><a href="#rights">Your Rights</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="privacy-main-content">
           <div class="last-updated">
-            <p><strong>Last Updated:</strong> January 2025</p>
+            <p><strong>Last Updated:</strong> August 19, 2025</p>
           </div>
           
-          <div class="privacy-section">
-            <h2>Information We Collect</h2>
-            <p>When you contact Goa Traders for cement and building materials, we may collect:</p>
+          <div id="collection" class="privacy-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M8,12H16V14H8V12M8,16H16V18H8V16Z" /></svg>
+              Information We Collect
+            </h2>
+            <p>When you contact Goa Traders for cement and building materials, we may collect the following personal information to facilitate our services:</p>
             <ul>
-              <li>Your name and contact information (phone, email, address)</li>
-              <li>Project details and material requirements</li>
-              <li>Delivery location and preferences</li>
-              <li>Communication history for better service</li>
+              <li>Your full name and contact details (phone number, email address).</li>
+              <li>Delivery address and project site location.</li>
+              <li>Specific details about your project and material requirements.</li>
+              <li>History of our communications to ensure service continuity.</li>
             </ul>
           </div>
           
-          <div class="privacy-section">
-            <h2>How We Use Your Information</h2>
-            <p>We use your information to:</p>
+          <div id="usage" class="privacy-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8V4L8,8H12M12,14V12H10A2,2 0 0,0 8,14V18A2,2 0 0,0 10,20H14A2,2 0 0,0 16,18V16H14V18H10V14H12M20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H18A2,2 0 0,1 20,4Z" /></svg>
+              How We Use Your Information
+            </h2>
+            <p>The information we collect is used exclusively for the following purposes:</p>
             <ul>
-              <li>Provide quotes and process your orders</li>
-              <li>Arrange delivery of cement and building materials</li>
-              <li>Communicate about your projects and orders</li>
-              <li>Improve our services and customer experience</li>
-              <li>Send important updates about your orders</li>
+              <li>To prepare accurate quotes and process your orders efficiently.</li>
+              <li>To schedule and execute the delivery of cement and building materials to your site.</li>
+              <li>To maintain clear communication regarding your orders, delivery status, and any inquiries.</li>
+              <li>To enhance our overall service quality and customer support.</li>
             </ul>
           </div>
           
-          <div class="privacy-section">
-            <h2>Information Sharing</h2>
-            <p>We do not sell, trade, or share your personal information with third parties except:</p>
+          <div id="sharing" class="privacy-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42L8.44,7.35C8.29,6.88 8.18,6.38 8.18,5.86C8.18,4.23 9.42,2.94 11,2.94C12.58,2.94 13.82,4.23 13.82,5.86C13.82,6.38 13.71,6.88 13.56,7.35L15.47,8.42C15.92,8.15 16.44,8 17,8C18.66,8 20,9.34 20,11C20,12.66 18.66,14 17,14C15.34,14 14,12.66 14,11C14,10.64 14.07,10.3 14.2,9.97L11.82,8.63C11.19,9.26 10.19,9.45 9.2,9.17L7.17,10.37C7.58,10.87 7.82,11.47 7.82,12.14C7.82,13.77 6.58,15.06 5,15.06C3.42,15.06 2.18,13.77 2.18,12.14C2.18,10.5 3.42,9.23 5,9.23V8Z" /></svg>
+              Information Sharing
+            </h2>
+            <p>We respect your privacy and do not sell, trade, or rent your personal information. We only share information with third parties under these limited circumstances:</p>
             <ul>
-              <li>With delivery partners to fulfill your orders</li>
-              <li>When required by law or legal process</li>
-              <li>To protect our rights and property</li>
+              <li>With our trusted delivery drivers and logistics partners solely for the purpose of fulfilling your order.</li>
+              <li>If required to comply with a legal obligation, court order, or governmental request.</li>
+              <li>To protect the rights, property, or safety of Goa Traders, our customers, or others.</li>
             </ul>
           </div>
           
-          <div class="privacy-section">
-            <h2>Data Security</h2>
-            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Your information is stored securely and accessed only by authorized personnel.</p>
+          <div id="security" class="privacy-section">
+            <h2>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,11.94C12.72,11.5 13,10.65 13,9.81V9A1,1 0 0,0 12,8A1,1 0 0,0 11,9V9.81C11,10.65 11.28,11.5 12,11.94M12,20A6,6 0 0,1 6,14C6,11.24 10,7.5 12,7.5C14,7.5 18,11.24 18,14A6,6 0 0,1 12,20Z" /></svg>
+              Data Security
+            </h2>
+            <p>We implement a variety of security measures to maintain the safety of your personal information. Your data is stored on secure systems and is only accessible by a limited number of authorized personnel who are required to keep the information confidential.</p>
+          </div>
+
+          <div id="whatsapp" class="privacy-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.75,13.96C17,14.26 17.25,14.71 17.25,15.26C17.25,16.08 16.5,16.78 15.65,16.91C14.8,17.04 13.8,17.11 12.6,16.6C10.9,15.91 9.5,14.71 8.5,13.16C7.5,11.61 6.8,9.76 6.8,8.26C6.8,7.36 7.3,6.76 7.55,6.51C7.8,6.26 8.25,6.06 8.5,6.06C8.75,6.06 9,6.06 9.25,6.06C9.5,6.06 9.6,6.11 9.75,6.41C10,6.86 10.5,8.01 10.5,8.16C10.5,8.31 10.4,8.51 10.25,8.71C10.1,8.91 10,8.96 9.85,9.11C9.7,9.26 9.55,9.41 9.7,9.71C9.85,10 10.3,10.86 11.15,11.71C12.2,12.76 12.9,13.06 13.2,13.16C13.5,13.26 13.6,13.21 13.75,13.06C13.9,12.91 14.1,12.61 14.3,12.36C14.5,12.11 14.7,12.06 14.9,12.11C15.1,12.16 16.25,12.81 16.5,12.96C16.75,13.11 16.85,13.21 16.9,13.31C16.95,13.41 16.75,13.66 16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.84,22 9.7,21.8 8.6,21.4L4,22.5L5.1,17.9C4.2,16.3 3.6,14.5 3.6,12.6C3.6,7.2 7.2,3.1 12,3.1M12,4.6C7.8,4.6 4.3,7.9 4.3,12.1C4.3,14 5,15.7 6,17.1L4.5,21L7.9,19.5C9.3,20.5 10.9,21.1 12.5,21.1C16.7,21.1 20.2,17.8 20.2,13.6C20.2,9.4 16.7,6.1 12.5,6.1H12V4.6Z" /></svg>
+              WhatsApp Communication
+            </h2>
+            <p>When you initiate contact with us via WhatsApp, your communications are governed by WhatsApp's own privacy policy. We use this platform strictly for business-related communication, such as order coordination and customer inquiries.</p>
           </div>
           
-          <div class="privacy-section">
-            <h2>WhatsApp Communication</h2>
-            <p>When you contact us via WhatsApp, your messages are subject to WhatsApp's privacy policy. We use WhatsApp for business communication and order coordination only.</p>
-          </div>
-          
-          <div class="privacy-section">
-            <h2>Your Rights</h2>
-            <p>You have the right to:</p>
+          <div id="rights" class="privacy-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>
+              Your Rights
+            </h2>
+            <p>You have control over your personal information. You have the right to:</p>
             <ul>
-              <li>Access your personal information we hold</li>
-              <li>Request correction of inaccurate information</li>
-              <li>Request deletion of your information</li>
-              <li>Opt-out of marketing communications</li>
+              <li>Request access to the personal information we hold about you.</li>
+              <li>Ask for the correction of any information you believe is inaccurate.</li>
+              <li>Request the deletion of your personal data from our records, subject to legal and contractual obligations.</li>
             </ul>
           </div>
           
-          <div class="privacy-section">
-            <h2>Contact Us</h2>
-            <p>If you have questions about this Privacy Policy or your personal information, contact us:</p>
+          <div id="contact" class="privacy-section">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" /></svg>
+              Contact Us
+            </h2>
+            <p>If you have any questions or concerns about this Privacy Policy or how we handle your data, please don't hesitate to contact us:</p>
             <div class="contact-info">
               <p><strong>Phone:</strong> <a href="tel:+919765664489">+91-9765664489</a></p>
-              <p><strong>WhatsApp:</strong> <a href="https://wa.me/919765664489">Message Us</a></p>
+              <p><strong>WhatsApp:</strong> <a href="https://wa.me/919765664489" target="_blank">Message Us on WhatsApp</a></p>
               <p><strong>Location:</strong> Serving All of Goa</p>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   </main>
@@ -98,106 +140,238 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  :root {
+    --primary-blue: #2563EB;
+    --dark-blue: #1D4ED8;
+    --light-gray: #F8FAFC;
+    --border-gray: #E2E8F0;
+    --text-dark: #1E293B;
+    --text-light: #475569;
+  }
+
   .privacy-hero {
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    background: var(--dark-blue);
     color: white;
-    padding: 6rem 0 4rem;
-    text-align: center;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 100% 0, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 15%),
+      radial-gradient(circle at 0 100%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 15%);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .breadcrumbs {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .breadcrumbs a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .breadcrumbs a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .breadcrumbs span {
+    margin: 0 0.5rem;
   }
   
   .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5rem;
   }
   
   .hero-content p {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     opacity: 0.95;
     max-width: 600px;
-    margin: 0 auto;
   }
   
   .privacy-content {
-    padding: 5rem 0;
-    background: white;
+    padding: 4rem 0;
+    background: #F1F5F9;
+  }
+
+  .privacy-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
   }
   
-  .content-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
+  /* Sidebar Navigation */
+  .privacy-nav {
+    flex: 0 0 250px;
+    position: sticky;
+    top: 2rem;
   }
   
+  .privacy-nav .nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .privacy-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 2px solid var(--border-gray);
+  }
+
+  .privacy-nav li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+  }
+
+  .privacy-nav li a:hover {
+    color: var(--primary-blue);
+    background: #eef2ff;
+    border-left-color: var(--primary-blue);
+    transform: translateX(4px);
+  }
+  
+  /* Main Content Area */
+  .privacy-main-content {
+    flex: 1;
+    min-width: 0;
+  }
+
   .last-updated {
-    background: #F8FAFC;
-    padding: 1rem;
+    background: var(--light-gray);
+    padding: 1rem 1.5rem;
     border-radius: 8px;
-    margin-bottom: 3rem;
-    border-left: 4px solid #2563EB;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-blue);
   }
   
   .privacy-section {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    scroll-margin-top: 2rem;
   }
   
   .privacy-section h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    color: #1E293B;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #E2E8F0;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .privacy-section h2 svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--primary-blue);
+    flex-shrink: 0;
   }
   
   .privacy-section p {
-    color: #475569;
+    color: var(--text-light);
     line-height: 1.7;
     margin-bottom: 1rem;
   }
   
   .privacy-section ul {
-    color: #475569;
+    color: var(--text-light);
     line-height: 1.7;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+    list-style: none;
+    padding-left: 1rem;
   }
   
   .privacy-section li {
-    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .privacy-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    line-height: 1.1;
   }
   
   .contact-info {
-    background: #F8FAFC;
+    background: var(--light-gray);
     padding: 1.5rem;
     border-radius: 8px;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
   
-  .contact-info p {
-    margin-bottom: 0.5rem;
-  }
+  .contact-info p { margin-bottom: 0.5rem; }
+  .contact-info p:last-child { margin-bottom: 0; }
   
   .contact-info a {
-    color: #2563EB;
+    color: var(--primary-blue);
+    font-weight: 500;
     text-decoration: none;
   }
   
-  .contact-info a:hover {
-    text-decoration: underline;
-  }
+  .contact-info a:hover { text-decoration: underline; }
   
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .privacy-layout { flex-direction: column; }
+    .privacy-nav {
+      position: static;
+      width: 100%;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-gray);
+      padding-bottom: 1rem;
+    }
+    .privacy-nav ul {
+      border-left: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .privacy-nav li a {
+      border: 1px solid var(--border-gray);
+      border-radius: 20px;
+      margin-left: 0;
+    }
+    .privacy-nav li a:hover { transform: none; }
+  }
+
   @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-    
-    .privacy-content {
-      padding: 3rem 0;
-    }
-    
-    .privacy-section h2 {
-      font-size: 1.5rem;
-    }
+    .hero-content h1 { font-size: 2rem; }
+    .privacy-content { padding: 3rem 0; }
+    .privacy-section { padding: 1.5rem; }
+    .privacy-section h2 { font-size: 1.4rem; }
   }
 </style>
