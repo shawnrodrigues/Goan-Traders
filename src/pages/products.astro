@@ -188,8 +188,8 @@ const brandNamesForClient = Object.keys(productsByBrand);
 </style>
 
 <script define:vars={{ productData: productDataForClient, brandNames: brandNamesForClient }}>
-  // All javascript logic remains the same
   document.addEventListener('DOMContentLoaded', () => {
+    // --- Standard page logic (counters, filters, modal) ---
     const statNumbers = document.querySelectorAll('.stat-number');
     const animateCounter = (element) => {
       const targetText = element.dataset.targetValue;
@@ -246,6 +246,7 @@ const brandNamesForClient = Object.keys(productsByBrand);
         e.preventDefault();
         e.stopPropagation();
         const productId = btn.dataset.product;
+        // Uses `productData` which is the correct client-side variable
         const product = productData[productId];
         if (product) {
           modalContent.innerHTML = `
@@ -290,53 +291,93 @@ const brandNamesForClient = Object.keys(productsByBrand);
     modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
+    // --- SMOOTH CAROUSEL LOGIC ---
     function initCarousel(carouselId, prevBtnId, nextBtnId, dotsId) {
-      const carousel = document.getElementById(carouselId);
-      const prevBtn = document.getElementById(prevBtnId);
-      const nextBtn = document.getElementById(nextBtnId);
-      const dotsContainer = document.getElementById(dotsId);
-      if (!carousel || !prevBtn || !nextBtn || !dotsContainer) return;
-      const cards = carousel.querySelectorAll('.product-card');
-      if (cards.length === 0) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
-        return;
-      }
-      const cardCount = cards.length;
-      let currentIndex = 0;
-      function createDots() {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < cardCount; i++) {
-          const dot = document.createElement('button');
-          dot.classList.add('carousel-dot');
-          if (i === 0) dot.classList.add('active');
-          dot.addEventListener('click', () => goToSlide(i));
-          dotsContainer.appendChild(dot);
+        const carousel = document.getElementById(carouselId);
+        const prevBtn = document.getElementById(prevBtnId);
+        const nextBtn = document.getElementById(nextBtnId);
+        const dotsContainer = document.getElementById(dotsId);
+
+        if (!carousel || !prevBtn || !nextBtn || !dotsContainer) return;
+
+        const cards = carousel.querySelectorAll('.product-card');
+        if (cards.length === 0) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            dotsContainer.style.display = 'none';
+            return;
         }
-      }
-      function updateState() {
-        const dots = dotsContainer.querySelectorAll('.carousel-dot');
-        dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-      }
-      function goToSlide(index) {
-        currentIndex = index;
-        const cardWidth = cards[0].offsetWidth + 24;
-        carousel.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
-        updateState();
-      }
-      prevBtn.addEventListener('click', () => {
-        const newIndex = (currentIndex - 1 + cardCount) % cardCount;
-        goToSlide(newIndex);
-      });
-      nextBtn.addEventListener('click', () => {
-        const newIndex = (currentIndex + 1) % cardCount;
-        goToSlide(newIndex);
-      });
-      createDots();
-      updateState();
-      setTimeout(() => { carousel.scrollLeft = 0; }, 100);
+
+        const cardCount = cards.length;
+        let scrollTimeout;
+
+        // This function updates button states and active dots based on scroll position
+        const updateCarouselState = () => {
+            // Disable/enable prev/next buttons
+            const isAtStart = carousel.scrollLeft < 10;
+            const isAtEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10;
+            prevBtn.disabled = isAtStart;
+            nextBtn.disabled = isAtEnd;
+
+            // Update active dot
+            const cardWidth = cards[0].offsetWidth;
+            const gap = parseInt(window.getComputedStyle(carousel).gap) || 24; // Default to 24px (1.5rem) if gap not found
+            const cardWidthWithGap = cardWidth + gap;
+            const currentIndex = Math.round(carousel.scrollLeft / cardWidthWithGap);
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        };
+        
+        // This function creates the navigation dots
+        const createDots = () => {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < cardCount; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    const cardWidth = cards[0].offsetWidth;
+                    const gap = parseInt(window.getComputedStyle(carousel).gap) || 24;
+                    const scrollToPosition = i * (cardWidth + gap);
+                    carousel.scrollTo({ left: scrollToPosition, behavior: 'smooth' });
+                });
+                dotsContainer.appendChild(dot);
+            }
+        };
+
+        // THE FIX: Scroll by the carousel's visible width for a smooth "page" effect
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -carousel.clientWidth, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' });
+        });
+
+        // Update the state after any scroll action (button click, drag, dot click)
+        carousel.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateCarouselState, 150); // Debounce to run after scroll finishes
+        });
+        
+        // Initial setup
+        createDots();
+        // Use a timeout to ensure the browser has calculated the layout
+        setTimeout(() => {
+            // Hide controls if the content isn't wide enough to scroll
+            if (carousel.scrollWidth <= carousel.clientWidth) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                dotsContainer.style.display = 'none';
+            } else {
+                updateCarouselState(); // Set initial button/dot state
+            }
+        }, 100);
     }
     
+    // Initialize all carousels on the page
     setTimeout(() => {
         brandNames.forEach(brandName => {
             const brandId = brandName.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
