@@ -9,7 +9,7 @@ export const products = [
     image: '/src/media/JK-Super-Strong.png',
     alt: 'JK Super Strong Cement - Best cement dealer in Goa',
     badge: { text: 'Bestseller', class: '' },
-    specs: { 'Grade': 'OPC 53', 'Strength': '53 MPa', 'Pack Size': '50 kg', 'Applications': 'High-rise buildings, bridges, industrial structures' },
+    specs: { 'Strength': '53 MPa', 'Pack Size': '50 kg', 'Applications': 'High-rise buildings, bridges, industrial structures' },
     features: ['High Strength', 'Fast Setting'],
     rating: 5,
     ratingText: '4.9/5'
@@ -86,7 +86,28 @@ export const products = [
     rating: 4.5,
     ratingText: '4.8/5'
   },
+
   {
+    id: 'UltraTech-Weather-Pro',
+    brand: 'UltraTech Products',
+    category: 'chemical',
+    name: 'UltraTech Weather Pro WP+200',
+    description: "An integral liquid waterproofing compound that protects concrete and mortar from dampness and seepage from the ground up.",
+    image: '/src/media/UltraTech-Weather-Pro.jpeg',
+    alt: 'UltraTech Weather Pro waterproofing chemical - Best dealer in Goa',
+    badge: { text: 'Damp Proofing', class: '' },
+    specs: { 
+      'Type': 'Integral Liquid Waterproofing', 
+      'Dosage': '200ml per 50kg cement', 
+      'Pack Size': '1L, 5L, 20L', 
+      'Applications': 'Concrete, plaster for basements, roofs, bathrooms' 
+    },
+    features: ['Reduces Water Permeability', 'Improves Workability', 'Corrosion Protection'],
+    rating: 4.5,
+    ratingText: '4.8/5'
+  },
+
+  /*{
     id: 'UltraTech-Seal-Dry',
     brand: 'UltraTech Products',
     category: 'chemical',
@@ -99,7 +120,7 @@ export const products = [
     features: ['High Flexibility', 'Crack Bridging', 'Excellent Adhesion'],
     rating: 4.5,
     ratingText: '4.7/5'
-  },
+  },*/
 
   // -------------------------- Ramco Products ----------------------------
 
@@ -193,25 +214,100 @@ export const products = [
     ratingText: '4.9/5'
   },
 
-  // ------------------------ JSW Products ----------------------------
-
   {
-    id: 'jsw-ggbs',
-    brand: 'JSW Products',
-    category: 'cement',
-    name: 'JSW GGBS Cement',
-    description: 'Advanced cement with Ground Granulated Blast Furnace Slag technology for superior durability.',
-    image: '/src/media/jsw-ggbs.png',
-    alt: 'JSW GGBS Cement - Green cement supplier in Goa',
-    badge: { text: 'Eco-Friendly', class: '' },
-    specs: { 'Strength': 'Comparable to OPC 43', 'Pack Size': '50 kg', 'Applications': 'Sustainable construction, high-performance structures' },
-    features: ['GGBS Technology', 'Sustainable', 'High Performance'],
-    rating: 5,
+    id: 'Ramco-Tile-Fix',
+    brand: 'Ramco Products',
+    category: 'chemical',
+    name: 'Ramco Tile Fix',
+    description: "A polymer-modified tile adhesive designed for strong, reliable bonding of ceramic and vitrified tiles on floors and walls.",
+    image: '/src/media/Ramco-Tile-Fix.png',
+    alt: 'Ramco Tile Fix adhesive - Best building material dealer in Goa',
+    badge: { text: 'Tile Adhesive', class: '' },
+    specs: { 
+      'Type': 'Polymer-Modified Adhesive', 
+      'Coverage': 'Approx. 55-60 sq.ft./25kg bag', 
+      'Pack Size': '25 kg', 
+      'Applications': 'Fixing ceramic & vitrified tiles, interior floors & walls' 
+    },
+    features: ['Excellent Adhesion', 'Non-Slip Formula', 'Easy to Mix'],
+    rating: 4.5,
     ratingText: '4.8/5'
   },
 
-  // -------------------------- Sand & Aggregates ----------------------------
   {
+    id: 'Ramco-Super-Shield',
+    brand: 'Ramco Products',
+    category: 'cement',
+    name: 'Ramco Super Shield',
+    description: "A premium water-repellent cement designed to provide a protective shield against moisture and dampness for the entire structure.",
+    image: '/src/media/Ramco-Super-Shield.jpg',
+    alt: 'Ramco Super Shield water-repellent cement - Best dealer in Nuvem, Goa',
+    badge: { text: 'Water Repellent', class: '' },
+    specs: { 
+      'Grade': 'Blended PPC', 
+      'Strength': 'High Water Resistance', 
+      'Pack Size': '1L', 
+      'Applications': 'Foundations, basements, external plastering, roofing' 
+    },
+    features: ['Shields from Dampness', 'Reduces Water Absorption', 'Corrosion Resistant'],
+    rating: 4.5,
+    ratingText: '4.9/5'
+  },
+
+  {
+    id: 'Ramco-Super-Plaster-Eco',
+    brand: 'Ramco Products',
+    category: 'chemical',
+    name: 'Ramco Super Plaster Eco',
+    description: "An eco-friendly, ready-to-use plaster mix that provides a super smooth finish for both internal and external walls, with reduced cracking.",
+    image: '/src/media/Ramco-Super-Plaster-Eco.png',
+    alt: 'Ramco Super Plaster Eco mix - Best building material dealer in Nuvem, Goa',
+    badge: { text: 'Ready-Mix Plaster', class: '' },
+    specs: { 
+      'Type': 'Ready-Mix Plaster', 
+      'Strength': 'Superior Smooth Finish', 
+      'Pack Size': '25kg', 
+      'Applications': 'Internal & external wall plastering, masonry surfaces' 
+    },
+    features: ['Super Smooth Finish', 'Eco-Friendly', 'Reduces Cracking'],
+    rating: 4.5,
+    ratingText: '4.7/5'
+  },
+
+  // ------------------------ JSW Products ----------------------------
+
+  {
+    id: 'JSW-Power-PRO',
+    brand: 'JSW Products',
+    category: 'cement',
+    name: 'JSW Cement Power PRO',
+    description: "A premium cement engineered for high early strength, ensuring faster setting times and enhanced durability for all structural applications.",
+    image: '/src/media/JSW-Cement-Power-PRO.png',
+    alt: 'JSW Cement Power PRO - Best cement dealer in Goa',
+    badge: { text: 'Early Strength', class: '' },
+    specs: { 'Strength': 'High Early Strength', 'Pack Size': '50 kg', 'Applications': 'Structural concrete, foundations, columns, roofing' },
+    features: ['High Early Strength', 'Faster Setting', 'Tamper-Proof Bag'],
+    rating: 4.5,
+    ratingText: '4.8/5'
+  },
+
+  {
+    id: 'JSW-Compcem',
+    brand: 'JSW Products',
+    category: 'cement',
+    name: 'JSW Cement Compcem',
+    description: "A composite cement specially designed for masonry and plastering, providing a superior smooth finish and improved workability.",
+    image: '/src/media/JSW-Cement-Compcem.png',
+    alt: 'JSW Cement Compcem - Best cement dealer in Goa',
+    badge: { text: 'Finishing Special', class: '' },
+    specs: { 'Grade': 'Composite', 'Strength': 'Optimized for Plastering', 'Pack Size': '50 kg', 'Applications': 'Internal & external plastering, masonry, brickwork' },
+    features: ['Superior Finish', 'Reduced Cracking', 'Improved Workability'],
+    rating: 4.5,
+    ratingText: '4.7/5'
+  },
+
+  // -------------------------- Sand & Aggregates ----------------------------
+ /* {
     id: 'river-sand-fine',
     brand: 'Sand & Aggregates',
     category: 'sand',
@@ -224,5 +320,5 @@ export const products = [
     features: ['Fine Grade', 'Plastering', 'Smooth Finish'],
     rating: 4,
     ratingText: '4.7/5'
-  },
+  },*/
 ];
