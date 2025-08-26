@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { products } from '../data/products.js';
 
-const brandDescriptions = {
+const brandDescriptions: Record<string, string> = {
   'JK Products': "India's leading cement manufacturer with superior quality and strength",
   'JSW Products': "Advanced cement technology for superior durability and sustainability", 
   'UltraTech Products': "India's largest cement company with consistent quality and nationwide trust",
@@ -13,13 +13,12 @@ const brandDescriptions = {
   'Building Materials': "High-quality building materials including blocks, bricks, sand and aggregates"
 };
 
-const productsByBrand = products.reduce((acc, product) => {
+const productsByBrand: Record<string, any> = products.reduce((acc: Record<string, any>, product) => {
   const brandName = product.brand;
   if (!acc[brandName]) {
     acc[brandName] = {
       products: [],
-      // Fix: Use the correct category field and handle the typo in data
-      category: product.category || product.categories || 'building-materials',
+      category: product.category || 'building-materials',
       description: brandDescriptions[brandName] || ''
     };
   }
@@ -27,7 +26,7 @@ const productsByBrand = products.reduce((acc, product) => {
   return acc;
 }, {});
 
-const productDataForClient = products.reduce((acc, product) => {
+const productDataForClient: Record<string, any> = products.reduce((acc: Record<string, any>, product) => {
   acc[product.id] = product;
   return acc;
 }, {});
@@ -36,9 +35,9 @@ const brandNamesForClient = Object.keys(productsByBrand);
 ---
 
 <Layout 
-  title="Goa Traders - Cement Supplier & Building Materials Dealer in Goa" 
-  description="Leading cement supplier in Goa offering JK, JSW, Ultratech & Ramco cement. Quality building materials, sand, and construction supplies with fast delivery across Goa."
-  keywords="cement supplier goa, jk cement dealer goa, jsw cement, ultratech cement, ramco cement, building materials goa, sand supplier goa, construction materials goa, cement dealer panjim, cement dealer margao"
+  title="Products - JK, JSW, Ultratech & Ramco Cement | Goa Traders" 
+  description="Browse our complete range of cement and building materials. JK, JSW, Ultratech, Ramco cement, blocks, bricks, sand & chemicals. Best prices in Goa with fast delivery."
+  keywords="jk cement products goa, jsw cement varieties, ultratech cement types, ramco cement products, building materials catalog goa, cement blocks bricks, construction chemicals, m sand kadi goa, laterite stone goa"
 >
   <Header />
   <main>
@@ -86,7 +85,7 @@ const brandNamesForClient = Object.keys(productsByBrand);
               <p class="category-description">{brandData.description}</p>
               <div class="carousel-container">
                 <div class="products-carousel" id={`${brandId}-carousel`}>
-                  {brandData.products.map(product => (
+                  {brandData.products.map((product: any) => (
                     <div class="product-card">
                       {product.badge && <div class={`product-badge ${product.badge.class}`}>{product.badge.text}</div>}
                       <div class="product-image">
@@ -107,7 +106,7 @@ const brandNamesForClient = Object.keys(productsByBrand);
                           ))}
                         </div>
                         <div class="product-features">
-                          {product.features.map(feature => (
+                          {product.features.map((feature: string) => (
                             <span class="feature">{feature}</span>
                           ))}
                         </div>
