@@ -5,11 +5,12 @@ import Footer from '../components/Footer.astro';
 import { products } from '../data/products.js';
 
 const brandDescriptions = {
-  'JK Cement': "India's leading white cement manufacturer with superior quality and strength",
-  'JSW Cement': "Advanced cement technology with GGBS for superior durability and sustainability",
-  'Ultratech Cement': "India's largest cement company with consistent quality and nationwide trust",
-  'Ramco Cement': "Premium cement with exceptional weather resistance, perfect for coastal construction",
-  'Sand & Aggregates': "Premium quality washed sand and aggregates for all construction requirements"
+  'JK Products': "India's leading cement manufacturer with superior quality and strength",
+  'JSW Products': "Advanced cement technology for superior durability and sustainability", 
+  'UltraTech Products': "India's largest cement company with consistent quality and nationwide trust",
+  'Ramco Products': "Premium cement with exceptional weather resistance, perfect for coastal construction",
+  'Chemical': "Premium quality chemicals and additives for construction requirements",
+  'Building Materials': "High-quality building materials including blocks, bricks, sand and aggregates"
 };
 
 const productsByBrand = products.reduce((acc, product) => {
@@ -17,7 +18,8 @@ const productsByBrand = products.reduce((acc, product) => {
   if (!acc[brandName]) {
     acc[brandName] = {
       products: [],
-      category: product.category,
+      // Fix: Use the correct category field and handle the typo in data
+      category: product.category || product.categories || 'building-materials',
       description: brandDescriptions[brandName] || ''
     };
   }
@@ -68,9 +70,8 @@ const brandNamesForClient = Object.keys(productsByBrand);
         <div class="filter-tabs">
           <button class="filter-btn active" data-filter="all">All Products</button>
           <button class="filter-btn" data-filter="cement">Cement</button>
-          <button class="filter-btn" data-filter="sand">Sand & Aggregates</button>
-          <button class="filter-btn" data-filter="chemicals">Chemicals</button>
-          <button class="filter-btn" data-filter="blocks">Blocks</button>
+          <button class="filter-btn" data-filter="chemical">Chemicals</button>
+          <button class="filter-btn" data-filter="building-materials">Building Materials</button>
         </div>
       </div>
     </section>
@@ -231,7 +232,23 @@ const brandNamesForClient = Object.keys(productsByBrand);
         btn.classList.add('active');
         const filter = btn.dataset.filter;
         productCategories.forEach(category => {
-          category.style.display = (filter === 'all' || category.dataset.category === filter) ? 'block' : 'none';
+          if (filter === 'all') {
+            category.style.display = 'block';
+          } else {
+            const categoryType = category.dataset.category;
+            console.log('Filter:', filter, 'Category Type:', categoryType); // Debug log
+            
+            // Fix: Better category matching logic
+            let shouldShow = false;
+            if (filter === 'building-materials') {
+              // Show if category contains 'building' or is undefined (fallback)
+              shouldShow = !categoryType || categoryType === 'building-materials' || categoryType.includes('building');
+            } else {
+              shouldShow = categoryType === filter;
+            }
+            
+            category.style.display = shouldShow ? 'block' : 'none';
+          }
         });
       });
     });
