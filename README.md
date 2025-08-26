@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Goan Traders Logo](public/media/GT-Logo.png)
+![Goan Traders](public/favicon.ico)
 
 ### 🌟 **Building Dreams, One Bag at a Time** 🌟
 
@@ -454,6 +454,6 @@ This project is proprietary software owned by **Goan Traders**. All rights reser
 
 ---
 
-[![Back to Top](https://img.shields.io/badge/Back%20to%20Top-⬆️-blue?style=for-the-badge)](#-goan-traders---premium-building-materials--cement-supplier-)
+[![Back to Top](https://img.shields.io/badge/Back%20to%20Top-⬆️-blue?style=for-the-badge)](#🏗️-goan-traders---premium-building-materials--cement-supplier-🚚)
 
 </div>
