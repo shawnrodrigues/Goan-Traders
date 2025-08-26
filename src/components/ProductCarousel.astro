@@ -108,17 +108,17 @@ const featuredProducts = shuffledProducts.slice(0, 6);
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const track = document.getElementById('carousel-track');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const dots = document.querySelectorAll('.dot');
-  const carouselContainer = document.querySelector('.carousel-container');
+  const track = document.getElementById('carousel-track') as HTMLElement;
+  const prevBtn = document.getElementById('prev-btn') as HTMLElement;
+  const nextBtn = document.getElementById('next-btn') as HTMLElement;
+  const dots = document.querySelectorAll('.dot') as NodeListOf<HTMLElement>;
+  const carouselContainer = document.querySelector('.carousel-container') as HTMLElement;
 
-  if (!track || !prevBtn || !nextBtn || !dots.length) {
+  if (!track || !prevBtn || !nextBtn || !dots.length || !carouselContainer) {
     return;
   }
 
-  const originalSlides = Array.from(track.children);
+  const originalSlides = Array.from(track.children) as HTMLElement[];
   const slideWidth = originalSlides[0].offsetWidth + 24;
 
   originalSlides.forEach(slide => {
@@ -131,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const totalSlides = originalSlides.length;
   let currentIndex = totalSlides; 
   let isTransitioning = false;
+  let autoPlay: ReturnType<typeof setInterval>;
 
   track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
 
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  function moveToIndex(index) {
+  function moveToIndex(index: number) {
     if (isTransitioning) return;
     isTransitioning = true;
     track.style.transition = 'transform 0.5s ease-in-out';
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
       track.style.transition = 'none';
       track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
     } else if (currentIndex < totalSlides) {
-      currentIndex = totalSlides * 2 -1;
+      currentIndex = totalSlides * 2 - 1;
       track.style.transition = 'none';
       track.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
     }
@@ -175,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  let autoPlay = setInterval(nextSlide, 5000);
+  autoPlay = setInterval(nextSlide, 5000);
   carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
   carouselContainer.addEventListener('mouseleave', () => autoPlay = setInterval(nextSlide, 5000));
 
