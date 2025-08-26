@@ -106,41 +106,43 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script>
-  const form = document.getElementById('contact-form');
+  const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitButton = document.getElementById('submit-button');
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault(); // Stop the form from reloading the page
-    const formData = new FormData(form);
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Stop the form from reloading the page
+      const formData = new FormData(form);
 
-    // --- Action 1: Send a copy to Discord in the background ---
-    // This happens silently without the user noticing.
-    fetch('/api/submit-form', {
-      method: 'POST',
-      body: formData,
-    }).catch(error => console.error('Error sending to Discord:', error)); // Log error if Discord fails
+      // --- Action 1: Send a copy to Discord in the background ---
+      // This happens silently without the user noticing.
+      fetch('/api/submit-form', {
+        method: 'POST',
+        body: formData,
+      }).catch(error => console.error('Error sending to Discord:', error)); // Log error if Discord fails
 
-    // --- Action 2: Redirect the user to WhatsApp (the primary action) ---
-    const data = Object.fromEntries(formData);
-    const message = `*New Enquiry from Website*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Email:* ${data.email || 'N/A'}\n*Location:* ${data.location || 'N/A'}\n*Products:* ${data.products || 'N/A'}\n*Quantity:* ${data.quantity || 'N/A'}\n\n*Details:*\n${data.message || 'No additional details'}`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919765664489?text=${encodedMessage}`;
-    
-    // Open WhatsApp in a new tab
-    window.open(whatsappUrl, '_blank');
+      // --- Action 2: Redirect the user to WhatsApp (the primary action) ---
+      const data = Object.fromEntries(formData);
+      const message = `*New Enquiry from Website*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Email:* ${data.email || 'N/A'}\n*Location:* ${data.location || 'N/A'}\n*Products:* ${data.products || 'N/A'}\n*Quantity:* ${data.quantity || 'N/A'}\n\n*Details:*\n${data.message || 'No additional details'}`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/919765664489?text=${encodedMessage}`;
+      
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank');
 
-    // --- Show a success message to the user on the website ---
-    const notification = document.createElement('div');
-    notification.className = 'form-notification';
-    notification.textContent = 'Redirecting to WhatsApp...';
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.classList.add('slide-out');
-      setTimeout(() => notification.remove(), 300);
-    }, 3000);
+      // --- Show a success message to the user on the website ---
+      const notification = document.createElement('div');
+      notification.className = 'form-notification';
+      notification.textContent = 'Redirecting to WhatsApp...';
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('slide-out');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
 
-    // Reset the form fields
-    form.reset();
-  });
+      // Reset the form fields
+      form.reset();
+    });
+  }
 </script>
