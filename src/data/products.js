@@ -403,7 +403,7 @@ export const products = [
   category: 'building-materials',
   name: 'Cement Concrete Blocks',
   description: 'High-quality, durable concrete blocks for all types of masonry work, providing excellent strength and consistency for walls and foundations.',
-  image: '/media/cement-blocks.jpg',
+  image: '/media/Concrete-Blocks.jpg',
   alt: 'Stack of cement concrete blocks for sale in Goa',
   badge: { text: 'Essential', class: '' },
   specs: { 
