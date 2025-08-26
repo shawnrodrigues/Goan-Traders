@@ -7,6 +7,14 @@ const MAX_REQUESTS_PER_WINDOW = 5; // 5 requests per minute per IP
 const MAX_FIELD_LENGTH = 500;
 const MAX_MESSAGE_LENGTH = 1000;
 
+// CORS headers for cross-origin requests
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Content-Type': 'application/json'
+};
+
 // In-memory rate limiting (for production, use Redis or database)
 const rateLimitStore = new Map();
 
@@ -64,7 +72,7 @@ export async function POST({ request, clientAddress }) {
     if (!checkRateLimit(clientIP)) {
       return new Response(JSON.stringify({ error: 'Too many requests' }), { 
         status: 429,
-        headers: { 'Content-Type': 'application/json' }
+        headers: CORS_HEADERS
       });
     }
 
@@ -73,7 +81,7 @@ export async function POST({ request, clientAddress }) {
     if (!contentType || !contentType.includes('multipart/form-data')) {
       return new Response(JSON.stringify({ error: 'Invalid content type' }), { 
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: CORS_HEADERS
       });
     }
 
@@ -92,21 +100,21 @@ export async function POST({ request, clientAddress }) {
     if (!name || name.length < 2) {
       return new Response(JSON.stringify({ error: 'Valid name required' }), { 
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: CORS_HEADERS
       });
     }
     
     if (!phone || !isValidPhone(phone)) {
       return new Response(JSON.stringify({ error: 'Valid phone number required' }), { 
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: CORS_HEADERS
       });
     }
     
     if (email && !isValidEmail(email)) {
       return new Response(JSON.stringify({ error: 'Valid email required' }), { 
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: CORS_HEADERS
       });
     }
 
@@ -116,7 +124,7 @@ export async function POST({ request, clientAddress }) {
       console.error('Discord webhook URL not configured');
       return new Response(JSON.stringify({ error: 'Service temporarily unavailable' }), { 
         status: 503,
-        headers: { 'Content-Type': 'application/json' }
+        headers: CORS_HEADERS
       });
     }
 
@@ -168,7 +176,7 @@ export async function POST({ request, clientAddress }) {
     }), { 
       status: 200,
       headers: { 
-        'Content-Type': 'application/json',
+        ...CORS_HEADERS,
         'X-Rate-Limit-Remaining': (MAX_REQUESTS_PER_WINDOW - rateLimitStore.get(clientIP).length).toString()
       }
     });
@@ -185,9 +193,17 @@ export async function POST({ request, clientAddress }) {
       error: 'Internal server error' 
     }), { 
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: CORS_HEADERS
     });
   }
+}
+
+// Handle OPTIONS requests for CORS preflight
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: CORS_HEADERS
+  });
 }
 
 // Handle non-POST requests
@@ -197,8 +213,8 @@ export async function GET() {
   }), { 
     status: 405,
     headers: { 
-      'Content-Type': 'application/json',
-      'Allow': 'POST'
+      ...CORS_HEADERS,
+      'Allow': 'POST, OPTIONS'
     }
   });
 }
