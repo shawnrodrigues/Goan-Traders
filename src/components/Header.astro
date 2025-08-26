@@ -1,4 +1,6 @@
 ---
+// Get current page path for active navigation highlighting
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="header">
@@ -44,18 +46,24 @@
         </a>
         
         <ul class="nav-menu" id="nav-menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/products">Products</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/reviews">Reviews</a></li>
+          <li><a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a></li>
+          <li><a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a></li>
+          <li><a href="/products" class={currentPath === '/products' ? 'active' : ''}>Products</a></li>
+          <li><a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a></li>
+          <li><a href="/reviews" class={currentPath === '/reviews' ? 'active' : ''}>Reviews</a></li>
+          <li class="mobile-cta">
+            <a href="/contact" class="btn-cta-mobile">Get Quote</a>
+          </li>
         </ul>
         
-        <button class="nav-toggle" id="nav-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="nav-actions">
+          <a href="/contact" class="btn-cta">Get Quote</a>
+          <button class="nav-toggle" id="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -119,17 +127,6 @@
     gap: 0.75rem;
   }
   
-  .logo-image {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo:hover .logo-image {
-    transform: scale(1.05);
-  }
-  
   .logo-content {
     display: flex;
     flex-direction: column;
@@ -168,10 +165,16 @@
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    padding: 0.5rem 0;
   }
   
   .nav-menu a:hover {
     color: #2563EB;
+  }
+  
+  .nav-menu a.active {
+    color: #2563EB;
+    font-weight: 600;
   }
   
   .nav-menu a::after {
@@ -185,8 +188,75 @@
     transition: width 0.3s ease;
   }
   
-  .nav-menu a:hover::after {
+  .nav-menu a:hover::after,
+  .nav-menu a.active::after {
     width: 100%;
+  }
+  
+  /* Navigation Actions - CTA + Mobile Toggle */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .btn-cta {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    color: white !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    text-decoration: none !important;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .btn-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  }
+  
+  .btn-cta::after {
+    display: none !important;
+  }
+  
+  .btn-cta:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  
+  /* Mobile CTA Button */
+  .mobile-cta {
+    display: none;
+    margin-top: 1rem;
+  }
+  
+  .btn-cta-mobile {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    color: white !important;
+    padding: 0.8rem 2.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none !important;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-cta-mobile:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+  
+  .btn-cta-mobile::after {
+    display: none !important;
   }
   
   .nav-toggle {
@@ -229,6 +299,14 @@
       display: flex;
     }
     
+    .btn-cta {
+      display: none; /* Hide desktop CTA on mobile */
+    }
+    
+    .mobile-cta {
+      display: block; /* Show mobile CTA */
+    }
+    
     .nav-menu {
       position: fixed;
       left: -100%;
@@ -264,11 +342,6 @@
   @media (max-width: 480px) {
     .logo {
       gap: 0.5rem;
-    }
-    
-    .logo-image {
-      width: 35px;
-      height: 35px;
     }
     
     .logo-text {

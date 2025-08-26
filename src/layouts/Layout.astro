@@ -31,17 +31,25 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon.ico">
     <meta name="theme-color" content="#2563EB">
     
+    <!-- Sitemap and Robots -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Goa Traders" />
+    <meta property="og:site_name" content="Goan Traders" />
+    <meta property="og:image" content="/favicon.ico" />
+    <meta property="og:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://goantraders.com" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/favicon.ico" />
+    <meta name="twitter:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
     
     <!-- Additional SEO Meta Tags -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -49,16 +57,16 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     <meta name="bingbot" content="index, follow" />
     <meta name="language" content="English" />
     <meta name="revisit-after" content="7 days" />
-    <meta name="author" content="Goa Traders" />
+    <meta name="author" content="Goan Traders" />
     <meta name="distribution" content="global" />
     <meta name="rating" content="general" />
     
     <!-- Local Business Schema -->
     <script type="application/ld+json">
       {
-        "@context": "https://goantraders.com",
+        "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "Goa Traders",
+        "name": "Goan Traders",
         "description": "Your trusted cement and building material supplier in Goa",
         "address": {
           "@type": "PostalAddress",
@@ -69,7 +77,7 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
         "openingHours": "Mo-Sa 08:00-18:00",
         "priceRange": "$$",
         "url": "https://goantraders.com",
-        "image": "/media/favicon.ico",
+        "image": "/favicon.ico",
         "areaServed": "Goa, India",
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -136,7 +144,7 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
         <div class="spinner-ring"></div>
         <div class="spinner-ring"></div>
       </div>
-      <p>Loading Goa Traders...</p>
+      <p>Loading Goan Traders...</p>
     </div>
     
     <slot />
@@ -498,7 +506,8 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+        const target = href ? document.querySelector(href) : null;
         if (target) {
           target.scrollIntoView({
             behavior: 'smooth',
@@ -578,13 +587,12 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     document.addEventListener('click', function(e) {
       const navToggle = document.getElementById('nav-toggle');
       const navMenu = document.getElementById('nav-menu');
+      const target = e.target as Node;
       
-      if (navMenu && navMenu.classList.contains('active') && 
-          !navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+      if (navMenu && navMenu.classList.contains('active') && navToggle && target &&
+          !navToggle.contains(target) && !navMenu.contains(target)) {
         navMenu.classList.remove('active');
-        if (navToggle) {
-          navToggle.classList.remove('active');
-        }
+        navToggle.classList.remove('active');
       }
     });
   });

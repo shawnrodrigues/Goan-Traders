@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://goantraders.com/sitemap.xml
+
+# Disallow development and system files
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.xml$ 
+Disallow: /.*
+Disallow: /_*
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /dist/
+Disallow: /.git/
+Disallow: /.env*
+
+# Allow important pages explicitly
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /favicon.ico
+Allow: /media/
+
+# Allow all main content
+Allow: /
+Allow: /about
+Allow: /products
+Allow: /contact
+Allow: /reviews
+Allow: /privacy
+Allow: /terms
+Allow: /coming-soon
+Allow: /sitemap
+
+# Crawl delay to be server-friendly
+Crawl-delay: 1
+
+# Host specification (optional but recommended)
+Host: https://goantraders.com
