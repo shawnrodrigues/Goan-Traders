@@ -14,7 +14,75 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main>
     <Hero />
+    
+    <!-- Statistics Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Tons Delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">Customer Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <ProductCarousel />
+    
+    <!-- Trusted Brands Section -->
+    <section class="brands-section">
+      <div class="container">
+        <h2 class="section-title">Authorized Dealer for Leading Brands</h2>
+        <div class="brands-grid">
+          <div class="brand-logo">
+            <img src="/media/JK Cement logo.jpg" alt="JK Cement Official Dealer" loading="lazy" />
+          </div>
+          <div class="brand-logo">
+            <img src="/media/jswlogo.png" alt="JSW Cement Authorized Dealer" loading="lazy" />
+          </div>
+          <div class="brand-logo">
+            <img src="/media/ultratech-cement-logo.png" alt="Ultratech Cement Dealer" loading="lazy" />
+          </div>
+          <div class="brand-logo">
+            <img src="/media/ramco-logo.jpg" alt="Ramco Cement Official Supplier" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Service Areas Section -->
+    <section class="service-areas-section">
+      <div class="container">
+        <h2 class="section-title">We Deliver Across Goa</h2>
+        <p class="section-subtitle">Fast and reliable cement delivery to all major areas in Goa</p>
+        <div class="areas-grid">
+          <div class="area-card">📍 Panjim</div>
+          <div class="area-card">📍 Margao</div>
+          <div class="area-card">📍 Mapusa</div>
+          <div class="area-card">📍 Vasco da Gama</div>
+          <div class="area-card">📍 Ponda</div>
+          <div class="area-card">📍 Bicholim</div>
+          <div class="area-card">📍 Curchorem</div>
+          <div class="area-card">📍 Pernem</div>
+          <div class="area-card">📍 Quepem</div>
+          <div class="area-card">📍 Sanguem</div>
+          <div class="area-card">📍 Canacona</div>
+          <div class="area-card">📍 Dharbandora</div>
+        </div>
+      </div>
+    </section>
     
     <section class="features-section">
       <div class="container">
@@ -53,6 +121,42 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
     
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="container">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Excellent quality cement and prompt delivery. Been using Goa Traders for all my construction projects for 3 years now."</p>
+            <div class="testimonial-author">
+              <strong>Rajesh Patel</strong>
+              <span>Constructor, Panjim</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Best prices in Goa and genuine products. Their JK cement quality is exactly what I needed for my villa construction."</p>
+            <div class="testimonial-author">
+              <strong>Maria D'Souza</strong>
+              <span>Homeowner, Margao</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Reliable supplier with great customer service. They delivered 50 bags of cement right on time for our project."</p>
+            <div class="testimonial-author">
+              <strong>Suresh Kumar</strong>
+              <span>Builder, Mapusa</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonials-cta">
+          <a href="/reviews" class="btn btn-secondary">Read More Reviews</a>
+        </div>
+      </div>
+    </section>
+    
     <section class="map-section">
       <div class="container">
         <h2 class="section-title">Visit Our Store</h2>
@@ -84,6 +188,180 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  /* Statistics Section */
+  .stats-section {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    color: white;
+    padding: 4rem 0;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .stat-item {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #FBBF24, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+
+  /* Trusted Brands Section */
+  .brands-section {
+    padding: 4rem 0;
+    background: #F8FAFC;
+  }
+  
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: center;
+  }
+  
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .brand-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .brand-logo img {
+    max-width: 120px;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(0.3);
+    transition: filter 0.3s ease;
+  }
+  
+  .brand-logo:hover img {
+    filter: grayscale(0);
+  }
+
+  /* Service Areas Section */
+  .service-areas-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #64748B;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .area-card {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+    color: #1E293B;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #E2E8F0;
+  }
+  
+  .area-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    border-color: #2563EB;
+  }
+
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 5rem 0;
+    background: white;
+  }
+  
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .testimonial-card {
+    background: linear-gradient(135deg, #FAFBFC 0%, #F1F5F9 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .testimonial-stars {
+    color: #FBBF24;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-text {
+    font-style: italic;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .testimonial-author strong {
+    color: #1E293B;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  .testimonial-author span {
+    color: #64748B;
+    font-size: 0.9rem;
+  }
+  
+  .testimonials-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
   /* Your original styles for the Features section */
   .features-section {
     padding: 5rem 0;
@@ -213,6 +491,59 @@ import Footer from '../components/Footer.astro';
 
   /* Your original responsive styles */
   @media (max-width: 768px) {
+    .stats-section {
+      padding: 3rem 0;
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+    }
+    
+    .brands-section {
+      padding: 3rem 0;
+    }
+    
+    .brands-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .brand-logo {
+      padding: 1rem;
+    }
+    
+    .service-areas-section {
+      padding: 3rem 0;
+    }
+    
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .area-card {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .testimonials-section {
+      padding: 3rem 0;
+    }
+    
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+    
     .map-section {
       padding: 3rem 0;
     }
