@@ -6,8 +6,6 @@ export interface Props {
   canonical?: string;
 }
 
-import SpeedInsights from '@vercel/speed-insights/astro';
-const { title, description } = Astro.props;
 const { title, description, keywords, canonical } = Astro.props;
 const defaultKeywords = "cement supplier goa, building materials goa, jk cement dealer, jsw cement, ultratech cement, ramco cement, sand supplier goa, construction materials goa";
 const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
@@ -35,19 +33,6 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     
     <!-- Sitemap and Robots -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-
-
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
- 
-    <script is:inline>
-    function speedInsightsBeforeSend(data){
-    console.log("Speed Insights before send", data)
-    return data;
-      }
-    </script>
-    <SpeedInsights />
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content={title} />
