@@ -1,4 +1,6 @@
 ---
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 export interface Props {
   title: string;
   description: string;
@@ -137,6 +139,8 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
   </head>
   <body>
+            <SpeedInsights />
+
     <!-- Loading Spinner -->
     <div class="loading-spinner" id="loading-spinner">
       <div class="spinner">
