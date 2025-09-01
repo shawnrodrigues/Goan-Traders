@@ -11,6 +11,7 @@ const defaultKeywords = "cement supplier goa, building materials goa, jk cement 
 const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
 
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 ---
 
 <!doctype html>
@@ -139,6 +140,7 @@ import Analytics from '@vercel/analytics/astro';
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
   </head>
   <Analytics />
+  <SpeedInsights />
   <body>
     <!-- Loading Spinner -->
     <div class="loading-spinner" id="loading-spinner">
