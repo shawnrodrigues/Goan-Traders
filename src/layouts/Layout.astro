@@ -9,6 +9,8 @@ export interface Props {
 const { title, description, keywords, canonical } = Astro.props;
 const defaultKeywords = "cement supplier goa, building materials goa, jk cement dealer, jsw cement, ultratech cement, ramco cement, sand supplier goa, construction materials goa";
 const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
+
+import Analytics from '@vercel/analytics/astro';
 ---
 
 <!doctype html>
@@ -136,6 +138,7 @@ const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeyw
     <!-- Preload critical resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
   </head>
+  <Analytics />
   <body>
     <!-- Loading Spinner -->
     <div class="loading-spinner" id="loading-spinner">
