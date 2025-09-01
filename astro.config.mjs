@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import dotenv from 'dotenv';
 
-import node from '@astrojs/node'; // Note: You are using the Vercel adapter, so this import is not needed unless you plan to switch to the Node.js adapter.
 import vercel from '@astrojs/vercel';
 
 dotenv.config();
@@ -17,6 +16,9 @@ export default defineConfig({
 
   adapter: vercel({
     webAnalytics: {
+      enabled: true,
+    },
+    speedInsights: {
       enabled: true,
     },
   })
