@@ -1,8 +1,7 @@
 import { defineConfig } from 'astro/config';
 import dotenv from 'dotenv';
 
-import node from '@astrojs/node';
-
+import node from '@astrojs/node'; // Note: You are using the Vercel adapter, so this import is not needed unless you plan to switch to the Node.js adapter.
 import vercel from '@astrojs/vercel';
 
 dotenv.config();
@@ -16,6 +15,9 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
 
-  adapter: vercel()
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  })
 });
-// This file is used to configure the Astro project, including environment variables.

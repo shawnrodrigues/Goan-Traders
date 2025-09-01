@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/node": "^9.4.3",
     "@astrojs/vercel": "^8.2.7",
+    "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.13.3",
     "dotenv": "^17.2.1"
