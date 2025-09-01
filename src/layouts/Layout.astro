@@ -1,592 +1,602 @@
 ---
 export interface Props {
-  title: string;
-  description: string;
-  keywords?: string;
-  canonical?: string;
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical?: string;
 }
 
 const { title, description, keywords, canonical } = Astro.props;
 const defaultKeywords = "cement supplier goa, building materials goa, jk cement dealer, jsw cement, ultratech cement, ramco cement, sand supplier goa, construction materials goa";
 const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
-
 import { Analytics } from '@vercel/analytics/astro';
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    
-        <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content={finalKeywords} />
-    {canonical && <link rel="canonical" href={canonical} />}
-    
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon.ico">
-    <meta name="theme-color" content="#2563EB">
-    
-        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    
-        <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Goan Traders" />
-    <meta property="og:image" content="/favicon.ico" />
-    <meta property="og:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
-    <meta property="og:locale" content="en_IN" />
-    <meta property="og:url" content="https://goantraders.com" />
-    
-        <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/favicon.ico" />
-    <meta name="twitter:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
-    
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="bingbot" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="author" content="Goan Traders" />
-    <meta name="distribution" content="global" />
-    <meta name="rating" content="general" />
-    
-        <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Goan Traders",
-        "description": "Your trusted cement and building material supplier in Goa",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Goa",
-          "addressCountry": "IN"
-        },
-        "telephone": "+91-9765664489",
-        "openingHours": "Mo-Sa 08:00-18:00",
-        "priceRange": "$$",
-        "url": "https://goantraders.com",
-        "image": "/favicon.ico",
-        "areaServed": "Goa, India",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "150"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Building Materials",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "JK Cement"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "JSW Cement"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "Ultratech Cement"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Product",
-                "name": "Ramco Cement"
-              }
-            }
-          ]
-        }
-      }
-    </script>
-    
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-        <link rel="dns-prefetch" href="//images.pexels.com">
-    <link rel="dns-prefetch" href="//wa.me">
-    <link rel="dns-prefetch" href="//maps.google.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-  </head>
-  <body>
-        <div class="loading-spinner" id="loading-spinner">
-      <div class="spinner">
-        <div class="spinner-ring"></div>
-        <div class="spinner-ring"></div>
-        <div class="spinner-ring"></div>
-      </div>
-      <p>Loading Goan Traders...</p>
-    </div>
-    
-    <slot />
-    
-        <div id="whatsapp-widget">
-      <a href="https://wa.me/919765664489" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
-        </svg>
-      </a>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
     
-    <Analytics />
-
-  </body>
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={finalKeywords} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    
+    <!-- Favicon and App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon.ico">
+    <meta name="theme-color" content="#2563EB">
+    
+    <!-- Sitemap and Robots -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Goan Traders" />
+    <meta property="og:image" content="/favicon.ico" />
+    <meta property="og:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://goantraders.com" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/favicon.ico" />
+    <meta name="twitter:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="author" content="Goan Traders" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Goan Traders",
+        "description": "Your trusted cement and building material supplier in Goa",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Goa",
+          "addressCountry": "IN"
+        },
+        "telephone": "+91-9765664489",
+        "openingHours": "Mo-Sa 08:00-18:00",
+        "priceRange": "$$",
+        "url": "https://goantraders.com",
+        "image": "/favicon.ico",
+        "areaServed": "Goa, India",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "150"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Building Materials",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "JK Cement"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "JSW Cement"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Ultratech Cement"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Ramco Cement"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="//images.pexels.com">
+    <link rel="dns-prefetch" href="//wa.me">
+    <link rel="dns-prefetch" href="//maps.google.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+  </head>
+  <body>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+      <div class="spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+      <p>Loading Goan Traders...</p>
+    </div>
+    
+    <slot />
+    
+    <!-- WhatsApp Chat Widget -->
+    <div id="whatsapp-widget">
+      <a href="https://wa.me/919765664489" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.106"/>
+        </svg>
+      </a>
+    </div>
+      <Analytics />
+  </body>
 </html>
 
 <style is:global>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    line-height: 1.6;
-    color: #334155;
-    background-color: #ffffff;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* WhatsApp Widget */
-  #whatsapp-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    animation: pulse 2s infinite;
-  }
-  
-  #whatsapp-widget a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
-    color: white;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-    transition: all 0.3s ease;
-  }
-  
-  #whatsapp-widget a:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-    animation: none;
-  }
-  
-  /* Loading Spinner */
-  .loading-spinner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: white;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-  }
-  
-  .loading-spinner.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .spinner {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 2rem;
-  }
-  
-  .spinner-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 4px solid transparent;
-    border-top: 4px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  
-  .spinner-ring:nth-child(2) {
-    width: 60px;
-    height: 60px;
-    top: 10px;
-    left: 10px;
-    animation-delay: -0.3s;
-    border-top-color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .spinner-ring:nth-child(3) {
-    width: 40px;
-    height: 40px;
-    top: 20px;
-    left: 20px;
-    animation-delay: -0.6s;
-    border-top-color: rgba(255, 255, 255, 0.4);
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .loading-spinner p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-  
-  /* Utility Classes */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-  }
-  
-  .btn-primary {
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-  }
-  
-  .btn-secondary {
-    background: white;
-    color: #2563EB;
-    border: 2px solid #2563EB;
-  }
-  
-  .btn-secondary:hover {
-    background: #2563EB;
-    color: white;
-  }
-  
-  .btn-success {
-    background: #059669;
-    color: white;
-  }
-  
-  .btn-success:hover {
-    background: #047857;
-    transform: translateY(-2px);
-  }
-  
-  /* Scroll to top button */
-  #scroll-to-top {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: #2563EB;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-  }
-  
-  #scroll-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  #scroll-to-top:hover {
-    background: #1D4ED8;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-  }
-  
-  /* Smooth reveal animations */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-  }
-  
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Enhanced button animations */
-  .btn {
-    position: relative;
-    overflow: hidden;
-    user-select: none;
-  }
-  
-  .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-  }
-  
-  .btn:hover::before {
-    left: 100%;
-  }
-  
-  /* Focus styles for accessibility */
-  .btn:focus,
-  button:focus,
-  a:focus {
-    outline: 2px solid #2563EB;
-    outline-offset: 2px;
-  }
-  
-  .section {
-    padding: 80px 0;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #1E293B;
-  }
-  
-  .card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Print styles */
-  @media print {
-    .header-top,
-    .navbar,
-    .footer,
-    #whatsapp-widget,
-    #scroll-to-top,
-    .btn {
-      display: none !important;
-    }
-    
-    body {
-      font-size: 12pt;
-      line-height: 1.4;
-    }
-    
-    .container {
-      max-width: none;
-      padding: 0;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 16px;
-    }
-    
-    .section {
-      padding: 60px 0;
-    }
-    
-    .section-title {
-      font-size: 2rem;
-    }
-    
-    .btn {
-      padding: 10px 20px;
-      font-size: 14px;
-    }
-    
-    #scroll-to-top {
-      bottom: 80px;
-      right: 15px;
-      width: 45px;
-      height: 45px;
-    }
-  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    line-height: 1.6;
+    color: #334155;
+    background-color: #ffffff;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* WhatsApp Widget */
+  #whatsapp-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    animation: pulse 2s infinite;
+  }
+  
+  #whatsapp-widget a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  #whatsapp-widget a:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    animation: none;
+  }
+  
+  /* Loading Spinner */
+  .loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+  
+  .loading-spinner.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .spinner {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+  }
+  
+  .spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid transparent;
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .spinner-ring:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    top: 10px;
+    left: 10px;
+    animation-delay: -0.3s;
+    border-top-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .spinner-ring:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    left: 20px;
+    animation-delay: -0.6s;
+    border-top-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loading-spinner p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  /* Utility Classes */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+  }
+  
+  .btn-secondary {
+    background: white;
+    color: #2563EB;
+    border: 2px solid #2563EB;
+  }
+  
+  .btn-secondary:hover {
+    background: #2563EB;
+    color: white;
+  }
+  
+  .btn-success {
+    background: #059669;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background: #047857;
+    transform: translateY(-2px);
+  }
+  
+  /* Scroll to top button */
+  #scroll-to-top {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #2563EB;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+  
+  #scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  #scroll-to-top:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
+  
+  /* Smooth reveal animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Enhanced button animations */
+  .btn {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn:hover::before {
+    left: 100%;
+  }
+  
+  /* Focus styles for accessibility */
+  .btn:focus,
+  button:focus,
+  a:focus {
+    outline: 2px solid #2563EB;
+    outline-offset: 2px;
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1E293B;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Print styles */
+  @media print {
+    .header-top,
+    .navbar,
+    .footer,
+    #whatsapp-widget,
+    #scroll-to-top,
+    .btn {
+      display: none !important;
+    }
+    
+    body {
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+    
+    .container {
+      max-width: none;
+      padding: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 16px;
+    }
+    
+    .section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    
+    #scroll-to-top {
+      bottom: 80px;
+      right: 15px;
+      width: 45px;
+      height: 45px;
+    }
+  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const spinner = document.getElementById('loading-spinner');
-    
-    // Hide spinner after page loads
-    window.addEventListener('load', function() {
-      setTimeout(() => {
-        if (spinner) {
-          spinner.classList.add('hidden');
-          setTimeout(() => {
-            spinner.remove();
-          }, 500);
-        }
-      }, 1000);
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
-        const target = href ? document.querySelector(href) : null;
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-    
-    // Scroll to top functionality
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.id = 'scroll-to-top';
-    scrollToTopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/></svg>';
-    scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
-    document.body.appendChild(scrollToTopBtn);
-    
-    // Show/hide scroll to top button
-    window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('visible');
-      } else {
-        scrollToTopBtn.classList.remove('visible');
-      }
-    });
-    
-    // Scroll to top when clicked
-    scrollToTopBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-    
-    // Fade in animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // Stop observing once animated
-        }
-      });
-    }, observerOptions);
-    
-    // Add fade-in class to elements and observe them
-    const elementsToAnimate = document.querySelectorAll('.section, .card, .product-card, .review-card, .article-card');
-    if (elementsToAnimate.length > 0) {
-      elementsToAnimate.forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
-      });
-    }
-    
-    // Add keyboard navigation support
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        // Close mobile menu if open
-        const navMenu = document.getElementById('nav-menu');
-        if (navMenu && navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-        }
-        
-        // Close any open modals
-        const modals = document.querySelectorAll('.modal.active');
-        modals.forEach(modal => {
-          modal.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        });
-      }
-    });
-    
-    // Add click outside to close mobile menu
-    document.addEventListener('click', function(e) {
-      const navToggle = document.getElementById('nav-toggle');
-      const navMenu = document.getElementById('nav-menu');
-      const target = e.target as Node;
-      
-      if (navMenu && navMenu.classList.contains('active') && navToggle && target &&
-          !navToggle.contains(target) && !navMenu.contains(target)) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-      }
-    });
-  });
+  document.addEventListener('DOMContentLoaded', function() {
+    const spinner = document.getElementById('loading-spinner');
+    
+    // Hide spinner after page loads
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        if (spinner) {
+          spinner.classList.add('hidden');
+          setTimeout(() => {
+            spinner.remove();
+          }, 500);
+        }
+      }, 1000);
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+        const target = href ? document.querySelector(href) : null;
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // Scroll to top functionality
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.id = 'scroll-to-top';
+    scrollToTopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/></svg>';
+    scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollToTopBtn);
+    
+    // Show/hide scroll to top button
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+    
+    // Scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Fade in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Stop observing once animated
+        }
+      });
+    }, observerOptions);
+    
+    // Add fade-in class to elements and observe them
+    const elementsToAnimate = document.querySelectorAll('.section, .card, .product-card, .review-card, .article-card');
+    if (elementsToAnimate.length > 0) {
+      elementsToAnimate.forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+      });
+    }
+    
+    // Add keyboard navigation support
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        // Close mobile menu if open
+        const navMenu = document.getElementById('nav-menu');
+        if (navMenu && navMenu.classList.contains('active')) {
+          navMenu.classList.remove('active');
+        }
+        
+        // Close any open modals
+        const modals = document.querySelectorAll('.modal.active');
+        modals.forEach(modal => {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      }
+    });
+    
+    // Add click outside to close mobile menu
+    document.addEventListener('click', function(e) {
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const target = e.target as Node;
+      
+      if (navMenu && navMenu.classList.contains('active') && navToggle && target &&
+          !navToggle.contains(target) && !navMenu.contains(target)) {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+      }
+    });
+  });
 </script>
+</action>
