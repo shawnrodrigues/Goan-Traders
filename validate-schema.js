@@ -24,7 +24,10 @@ function validateSchema() {
     'Price specifications': /"priceSpecification":/,
     'Brand information': /"@type": "Brand"/,
     'Contact points': /"contactPoint":/,
-    'Availability status': /"availability": "https:\/\/schema\.org\/InStock"/
+    'Availability status': /"availability": "https:\/\/schema\.org\/InStock"/,
+    'Product images': /"image": "https:\/\/goantraders\.com/,
+    'Product descriptions': /"description": "/,
+    'Offer prices': /"price": "/
   };
   
   let allPassed = true;
