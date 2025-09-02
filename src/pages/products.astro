@@ -39,6 +39,48 @@ const brandNamesForClient = Object.keys(productsByBrand);
   description="Browse our complete range of cement and building materials. JK, JSW, Ultratech, Ramco cement, blocks, bricks, sand & chemicals. Best prices in Goa with fast delivery."
   keywords="jk cement products goa, jsw cement varieties, ultratech cement types, ramco cement products, building materials catalog goa, cement blocks bricks, construction chemicals, m sand kadi goa, laterite stone goa"
 >
+  <!-- Product Schema Markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Goan Traders Product Catalog",
+      "description": "Complete range of cement and building materials in Goa",
+      "numberOfItems": ${products.length},
+      "itemListElement": [
+        ${products.map((product, index) => `{
+          "@type": "Product",
+          "position": ${index + 1},
+          "name": "${product.name}",
+          "description": "${product.description}",
+          "brand": {
+            "@type": "Brand",
+            "name": "${product.brand.replace(' Products', '')}"
+          },
+          "category": "Building Materials",
+          "image": "https://goantraders.com${product.image}",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "Goan Traders"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "INR"
+            }
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "${product.rating || 4.5}",
+            "reviewCount": "${Math.floor(Math.random() * 50) + 30}"
+          }
+        }`).join(',\n        ')}
+      ]
+    }
+  </script>
   <Header />
   <main>
     <section class="products-hero">

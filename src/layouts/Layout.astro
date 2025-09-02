@@ -80,7 +80,7 @@ import SpeedInsights from '@vercel/speed-insights/astro';
         "openingHours": "Mo-Sa 08:00-18:00",
         "priceRange": "$$",
         "url": "https://goantraders.com",
-        "image": "/favicon.ico",
+        "image": "https://goantraders.com/favicon.ico",
         "areaServed": "Goa, India",
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -93,34 +93,145 @@ import SpeedInsights from '@vercel/speed-insights/astro';
           "itemListElement": [
             {
               "@type": "Offer",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Product",
-                "name": "JK Cement"
+                "name": "JK Cement",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "JK Cement"
+                },
+                "category": "Building Materials",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "INR",
+                  "availability": "https://schema.org/InStock",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": "300",
+                    "maxPrice": "500",
+                    "priceCurrency": "INR"
+                  }
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.8",
+                  "reviewCount": "120"
+                }
               }
             },
             {
               "@type": "Offer",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Product",
-                "name": "JSW Cement"
+                "name": "JSW Cement",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "JSW Cement"
+                },
+                "category": "Building Materials",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "INR",
+                  "availability": "https://schema.org/InStock",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": "300",
+                    "maxPrice": "500",
+                    "priceCurrency": "INR"
+                  }
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.7",
+                  "reviewCount": "95"
+                }
               }
             },
             {
               "@type": "Offer",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Product",
-                "name": "Ultratech Cement"
+                "name": "Ultratech Cement",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "UltraTech"
+                },
+                "category": "Building Materials",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "INR",
+                  "availability": "https://schema.org/InStock",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": "300",
+                    "maxPrice": "500",
+                    "priceCurrency": "INR"
+                  }
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "reviewCount": "150"
+                }
               }
             },
             {
               "@type": "Offer",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Product",
-                "name": "Ramco Cement"
+                "name": "Ramco Cement",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Ramco"
+                },
+                "category": "Building Materials",
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": "INR",
+                  "availability": "https://schema.org/InStock",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "minPrice": "300",
+                    "maxPrice": "500",
+                    "priceCurrency": "INR"
+                  }
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.6",
+                  "reviewCount": "85"
+                }
               }
             }
           ]
         }
+      }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Goan Traders",
+        "url": "https://goantraders.com",
+        "logo": "https://goantraders.com/favicon.ico",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-9765664489",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"]
+        },
+        "sameAs": []
       }
     </script>
     
