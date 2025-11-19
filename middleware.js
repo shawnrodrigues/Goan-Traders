@@ -1,78 +1,54 @@
-// middleware.js
-import { NextResponse } from "next/server"; // Works on Vercel Edge
 import banned from "./banned-ips.json" assert { type: "json" };
 
-/**
- * Load blocked lists once at module initialization for performance
- */
+// Convert banned lists
 const blockedExact = new Set(banned.exact || []);
-const blockedCidrs = (banned.cidr || []).slice(); // array of strings
+const blockedCidrs = banned.cidr || [];
 
-/* ---------- helpers ---------- */
+/* ------------------ IP HELPERS ------------------ */
 
-// get client IP from headers (trusting Vercel/X-Forwarded-For)
+// Extract real client IP
 function getClientIP(request) {
   const xff = request.headers.get("x-forwarded-for");
   if (xff) {
     return xff.split(",")[0].trim();
   }
-  // fallback to request.ip (Vercel provides it at Edge)
-  return request.ip || null;
+  return request.ip ?? null;
 }
 
-// Convert IPv4 dotted quad to 32-bit number (unsigned)
+// Convert IPv4 to 32-bit number
 function ipv4ToInt(ip) {
-  const parts = ip.split(".");
-  if (parts.length !== 4) throw new Error("Invalid IPv4");
-  return parts.reduce((acc, p) => (acc << 8) + Number(p), 0) >>> 0;
+  return ip.split(".").reduce((acc, oct) => (acc << 8) + Number(oct), 0) >>> 0;
 }
 
-// Check if IPv4 is inside an IPv4 CIDR
+// Check if IPv4 is in CIDR
 function ipv4InCidr(ip, cidr) {
-  if (!ip || ip.indexOf(".") === -1) return false;
   const [range, bitsStr] = cidr.split("/");
   const bits = Number(bitsStr ?? 32);
-  if (isNaN(bits) || bits < 0 || bits > 32) return false;
-  try {
-    const ipNum = ipv4ToInt(ip);
-    const rangeNum = ipv4ToInt(range);
-    const mask = bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0;
-    return (ipNum & mask) === (rangeNum & mask);
-  } catch (e) {
-    return false;
-  }
+  const ipNum = ipv4ToInt(ip);
+  const rangeNum = ipv4ToInt(range);
+  const mask = bits === 0 ? 0 : (0xffffffff << (32 - bits)) >>> 0;
+  return (ipNum & mask) === (rangeNum & mask);
 }
 
-/* ---------- middleware ---------- */
+/* ------------------ MIDDLEWARE ------------------ */
 
 export function middleware(request) {
-  // 1) Get client IP
-  const clientIP = getClientIP(request);
-  if (!clientIP) {
-    // If we can't determine IP, allow (or change to deny by default if preferred)
-    return NextResponse.next();
+  const ip = getClientIP(request);
+
+  // 1) Exact match
+  if (ip && blockedExact.has(ip)) {
+    return new Response("Access denied (exact IP block)", { status: 403 });
   }
 
-  // 2) Exact match (IPv4 and IPv6)
-  if (blockedExact.has(clientIP)) {
-    return new NextResponse("Access denied", { status: 403 });
-  }
-
-  // 3) CIDR matches (IPv4 only)
-  if (clientIP.indexOf(".") !== -1) {
-    for (const c of blockedCidrs) {
-      if (ipv4InCidr(clientIP, c)) {
-        return new NextResponse("Access denied", { status: 403 });
+  // 2) CIDR match
+  if (ip && ip.includes(".")) {
+    for (const cidr of blockedCidrs) {
+      if (ipv4InCidr(ip, cidr)) {
+        return new Response("Access denied (CIDR blocked)", { status: 403 });
       }
     }
   }
 
-  // not blocked -> continue
-  return NextResponse.next();
+  // Allow request
+  return;
 }
-
-/* Optional: run middleware only for front-end pages (skip api/static)
-export const config = {
-  matcher: ["/((?!api|_next/static|_next/image).*)"]
-};
-*/
