@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
 <Layout 
@@ -9,6 +11,9 @@ import Footer from '../components/Footer.astro';
   description="Contact Goan Traders for cement, sand and building materials in Goa. Call +91-9765664489, WhatsApp or visit our store. Fast delivery across Goa with competitive prices."
   keywords="contact Goan Traders, cement supplier phone number, building materials goa contact, jk cement dealer contact, cement delivery goa, construction materials contact"
 >
+  {RECAPTCHA_SITE_KEY && (
+    <script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`} defer></script>
+  )}
   <Header />
   <main>
     <section class="contact-hero">
@@ -105,6 +110,7 @@ import Footer from '../components/Footer.astro';
               <form class="contact-form" id="contact-form">
                 <!-- Error/Success Message Display -->
                 <div id="form-message" class="form-message" style="display: none;"></div>
+                <input type="hidden" name="recaptchaToken" id="recaptchaToken" />
                 
                 <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required></div>
                 <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="phone" required></div>
@@ -258,9 +264,11 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script>
+  const recaptchaSiteKey = `${RECAPTCHA_SITE_KEY ?? ''}`;
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
   const formMessage = document.getElementById('form-message') as HTMLDivElement;
+  const recaptchaInput = document.getElementById('recaptchaToken') as HTMLInputElement;
 
   function showMessage(message: string, type: 'error' | 'success' | 'info') {
     if (formMessage) {
@@ -284,9 +292,36 @@ import Footer from '../components/Footer.astro';
     }
   }
 
+  function getRecaptchaToken(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if (!recaptchaSiteKey) {
+        reject(new Error('reCAPTCHA site key is not configured'));
+        return;
+      }
+
+      const recaptcha = (window as any).grecaptcha;
+
+      if (!recaptcha) {
+        reject(new Error('reCAPTCHA script not loaded'));
+        return;
+      }
+
+      recaptcha.ready(() => {
+        recaptcha.execute(recaptchaSiteKey, { action: 'contact_form' })
+          .then((token: string) => resolve(token))
+          .catch((error: unknown) => reject(error));
+      });
+    });
+  }
+
   if (form) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+
+      if (!recaptchaSiteKey) {
+        showMessage('Security check unavailable. Please try again later.', 'error');
+        return;
+      }
       
       // Hide any previous messages
       if (formMessage) {
@@ -294,6 +329,19 @@ import Footer from '../components/Footer.astro';
       }
       
       setLoading(true);
+
+      try {
+        const token = await getRecaptchaToken();
+        if (recaptchaInput) {
+          recaptchaInput.value = token;
+        }
+      } catch (recaptchaError) {
+        console.error('reCAPTCHA error:', recaptchaError);
+        showMessage('Security verification failed. Please refresh and try again.', 'error');
+        setLoading(false);
+        return;
+      }
+
       const formData = new FormData(form);
 
       try {
@@ -313,10 +361,20 @@ import Footer from '../components/Footer.astro';
         }
 
         // If validation passed, proceed with WhatsApp redirect
-        showMessage('✅ Form validated! Redirecting to WhatsApp...', 'success');
+        showMessage('Form validated! Redirecting to WhatsApp...', 'success');
         
         const data = Object.fromEntries(formData);
-        const message = `*New Enquiry from Website*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Email:* ${data.email || 'N/A'}\n*Location:* ${data.location || 'N/A'}\n*Products:* ${data.products || 'N/A'}\n*Quantity:* ${data.quantity || 'N/A'}\n\n*Details:*\n${data.message || 'No additional details'}`;
+        const message = `*New Enquiry from Website*
+
+*Name:* ${data.name}
+*Phone:* ${data.phone}
+*Email:* ${data.email || 'N/A'}
+*Location:* ${data.location || 'N/A'}
+*Products:* ${data.products || 'N/A'}
+*Quantity:* ${data.quantity || 'N/A'}
+
+*Details:*
+${data.message || 'No additional details'}`;
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/919765664489?text=${encodedMessage}`;
         
@@ -329,7 +387,7 @@ import Footer from '../components/Footer.astro';
 
       } catch (error) {
         console.error('Form submission error:', error);
-        showMessage('❌ Network error. Please check your connection and try again.', 'error');
+        showMessage('Network error. Please check your connection and try again.', 'error');
       } finally {
         setLoading(false);
       }

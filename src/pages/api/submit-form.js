@@ -6,6 +6,8 @@ const RATE_LIMIT_WINDOW = 60000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 5; // 5 requests per minute per IP
 const MAX_FIELD_LENGTH = 500;
 const MAX_MESSAGE_LENGTH = 1000;
+const RECAPTCHA_SECRET_KEY = import.meta.env.RECAPTCHA_SECRET_KEY;
+const RECAPTCHA_SCORE_THRESHOLD = 0.5;
 
 // CORS headers for cross-origin requests
 const CORS_HEADERS = {
@@ -65,6 +67,41 @@ function checkRateLimit(ip) {
   return true; // Request allowed
 }
 
+async function verifyRecaptcha(token, clientIP) {
+  if (!RECAPTCHA_SECRET_KEY) {
+    console.error('reCAPTCHA secret key not configured');
+    return { success: false, error: 'recaptcha_not_configured' };
+  }
+
+  const params = new URLSearchParams();
+  params.append('secret', RECAPTCHA_SECRET_KEY);
+  params.append('response', token);
+
+  if (clientIP && clientIP !== 'unknown') {
+    params.append('remoteip', clientIP);
+  }
+
+  const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: params,
+    signal: AbortSignal.timeout(5000)
+  });
+
+  const result = await response.json();
+  const validAction = result.action === 'contact_form';
+  const meetsScore = typeof result.score === 'number' && result.score >= RECAPTCHA_SCORE_THRESHOLD;
+
+  return {
+    success: Boolean(result.success && validAction && meetsScore),
+    score: result.score,
+    action: result.action,
+    errorCodes: result['error-codes']
+  };
+}
+
 export async function POST({ request, clientAddress }) {
   try {
     // Rate limiting
@@ -86,6 +123,35 @@ export async function POST({ request, clientAddress }) {
     }
 
     const formData = await request.formData();
+    const recaptchaToken = formData.get('recaptchaToken');
+
+    if (!recaptchaToken || typeof recaptchaToken !== 'string') {
+      return new Response(JSON.stringify({ error: 'Security verification failed' }), { 
+        status: 400,
+        headers: CORS_HEADERS
+      });
+    }
+
+    const recaptchaResult = await verifyRecaptcha(recaptchaToken, clientIP);
+
+    if (recaptchaResult.error === 'recaptcha_not_configured') {
+      return new Response(JSON.stringify({ error: 'Service temporarily unavailable' }), { 
+        status: 503,
+        headers: CORS_HEADERS
+      });
+    }
+
+    if (!recaptchaResult.success) {
+      console.warn('reCAPTCHA validation failed', {
+        score: recaptchaResult.score,
+        action: recaptchaResult.action,
+        errors: recaptchaResult.errorCodes
+      });
+      return new Response(JSON.stringify({ error: 'Security verification failed. Please try again.' }), { 
+        status: 400,
+        headers: CORS_HEADERS
+      });
+    }
     
     // Extract and sanitize inputs
     const name = sanitizeInput(formData.get('name'));
