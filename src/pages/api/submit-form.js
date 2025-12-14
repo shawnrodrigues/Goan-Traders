@@ -87,6 +87,48 @@ export async function POST({ request, clientAddress }) {
 
     const formData = await request.formData();
     
+    // Extract and verify Turnstile token
+    const turnstileToken = formData.get('cf-turnstile-response');
+    
+    if (!turnstileToken) {
+      return new Response(JSON.stringify({ error: 'Captcha verification required' }), { 
+        status: 400,
+        headers: CORS_HEADERS
+      });
+    }
+    
+    // Verify Turnstile token with Cloudflare
+    const TURNSTILE_SECRET = import.meta.env.CLOUDFLARE_TURNSTILE_SECRET_KEY;
+    
+    if (!TURNSTILE_SECRET) {
+      console.error('Turnstile secret key not configured');
+      return new Response(JSON.stringify({ error: 'Captcha service unavailable' }), { 
+        status: 503,
+        headers: CORS_HEADERS
+      });
+    }
+    
+    const turnstileVerification = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secret: TURNSTILE_SECRET,
+        response: turnstileToken,
+        remoteip: clientIP
+      })
+    });
+    
+    const turnstileResult = await turnstileVerification.json();
+    
+    if (!turnstileResult.success) {
+      return new Response(JSON.stringify({ error: 'Captcha verification failed' }), { 
+        status: 400,
+        headers: CORS_HEADERS
+      });
+    }
+    
     // Extract and sanitize inputs
     const name = sanitizeInput(formData.get('name'));
     const phone = sanitizeInput(formData.get('phone'));
@@ -145,7 +187,7 @@ export async function POST({ request, clientAddress }) {
             { name: "🏭 Products", value: products || "_Not specified_", inline: false },
             { name: "💬 Message", value: "```" + (message || "_No additional details_") + "```" },
             { name: "🌐 Client IP", value: clientIP, inline: true },
-            { name: "🔒 Security", value: "✅ Validated & Sanitized", inline: true }
+            { name: "🔒 Security", value: "✅ Validated & Captcha Verified", inline: true }
           ],
           footer: {
             text: `🕐 IST: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}`

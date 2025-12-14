@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "astro",
+  "regions": ["bom1"],
+  "env": {
+    "CLOUDFLARE_TURNSTILE_SITE_KEY": "@cloudflare_turnstile_site_key",
+    "CLOUDFLARE_TURNSTILE_SECRET_KEY": "@cloudflare_turnstile_secret_key",
+    "DISCORD_WEBHOOK_URL": "@discord_webhook_url"
+  }
+}

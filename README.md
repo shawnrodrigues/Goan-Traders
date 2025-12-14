@@ -59,6 +59,14 @@ Welcome to the **MOST INSANE** building materials website in Goa! 🔥 This isn'
 - **📱 WhatsApp Integration**: Direct chat for instant queries
 - **🎯 Call-to-Action**: Strategic placement for maximum conversions
 
+### 🔐 **Security & Protection**
+- **🛡️ Cloudflare Turnstile**: Bot protection with captcha verification
+- **⚡ Rate Limiting**: Protection against spam and abuse (5 req/min per IP)
+- **🧹 Input Sanitization**: XSS and injection attack prevention
+- **✅ Server-Side Validation**: Email, phone, and data format verification
+- **🔒 Environment Variables**: Secure credential management
+- **📝 Discord Logging**: Secure form submission tracking
+
 ---
 
 ## 🛠️ **TECH STACK MADNESS**
@@ -160,7 +168,15 @@ cd goan-traders-site
 # 2️⃣ Install dependencies (Prepare for takeoff!)
 npm install
 
-# 3️⃣ Start development server (Launch sequence initiated!)
+# 3️⃣ Configure environment variables
+# Copy .env.example to .env and add your keys
+cp .env.example .env
+# Then edit .env with your actual values:
+# - CLOUDFLARE_TURNSTILE_SITE_KEY
+# - CLOUDFLARE_TURNSTILE_SECRET_KEY
+# - DISCORD_WEBHOOK_URL
+
+# 4️⃣ Start development server (Launch sequence initiated!)
 npm run dev
 
 # 🎉 Open http://localhost:4321 and witness the magic!
@@ -334,30 +350,56 @@ SEO: 100 🟢
 
 ## 🚀 **DEPLOYMENT & HOSTING**
 
-### 🌐 **Recommended Hosting Platforms**
+### 🌐 **Vercel Deployment (Recommended)**
+
+**📚 Complete Guide**: See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)  
+**✅ Quick Checklist**: See [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)
+
+#### Quick Deploy Steps:
+1. **🔑 Get Your Keys**:
+   - Cloudflare Turnstile keys from https://dash.cloudflare.com/
+   - Discord Webhook URL
+
+2. **🚀 Deploy to Vercel**:
+   ```bash
+   # Connect your GitHub repo to Vercel
+   # Vercel auto-detects Astro and configures build
+   ```
+
+3. **⚙️ Add Environment Variables** in Vercel:
+   - `CLOUDFLARE_TURNSTILE_SITE_KEY`
+   - `CLOUDFLARE_TURNSTILE_SECRET_KEY`
+   - `DISCORD_WEBHOOK_URL`
+
+4. **✅ Configure Turnstile**:
+   - Add your Vercel domain in Cloudflare Turnstile settings
+
+### 🏆 **Other Hosting Platforms**
 ```bash
-# 🏆 Premium Options
-Vercel     # Zero-config Astro deployment
+# Alternative Options
 Netlify    # JAMstack specialist platform
 Cloudflare # Global CDN with edge computing
-
-# 💰 Budget-Friendly Options  
 GitHub Pages  # Free static hosting
-Surge.sh      # Simple static deployment
-Firebase      # Google's hosting platform
 ```
 
-### 🔄 **Deployment Commands**
+### 🔄 **Manual Deployment Commands**
 ```bash
 # 🏗️ Build for production
 npm run build
 
 # 📁 Output directory: dist/
 # 📤 Upload dist/ folder to your hosting platform
-
-# 🚀 One-click deployment (Vercel example)
-vercel --prod
 ```
+
+### 🔐 **Environment Variables**
+```env
+# Required for production:
+CLOUDFLARE_TURNSTILE_SITE_KEY=your_site_key
+CLOUDFLARE_TURNSTILE_SECRET_KEY=your_secret_key
+DISCORD_WEBHOOK_URL=your_webhook_url
+```
+
+**Note**: See [TURNSTILE_SETUP.md](./TURNSTILE_SETUP.md) for Cloudflare Turnstile configuration.
 
 ---
 
