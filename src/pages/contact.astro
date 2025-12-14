@@ -302,16 +302,13 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
       setLoading(true);
       const formData = new FormData(form);
       
-      // Get Turnstile token
+      // Get Turnstile token (if widget loaded)
       const turnstileResponse = (window as any).turnstile?.getResponse();
-      if (!turnstileResponse) {
-        showMessage('⚠️ Please complete the captcha verification.', 'error');
-        setLoading(false);
-        return;
-      }
       
-      // Add Turnstile token to form data
-      formData.append('cf-turnstile-response', turnstileResponse);
+      // Add Turnstile token to form data if available
+      if (turnstileResponse) {
+        formData.append('cf-turnstile-response', turnstileResponse);
+      }
 
       try {
         // Send to API for validation and Discord logging
