@@ -108,13 +108,30 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
               <form class="contact-form" id="contact-form">
                 <!-- Error/Success Message Display -->
                 <div id="form-message" class="form-message" style="display: none;"></div>
+                <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" aria-hidden="true" class="hp-field">
+                <input type="hidden" name="form_start_time" id="form-start-time" value={Date.now().toString()}>
                 
                 <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" required></div>
                 <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="phone" required></div>
                 <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email"></div>
                 <div class="form-group"><label for="location">Project Location in Goa</label><input type="text" id="location" name="location" placeholder="e.g., Panjim, Margao, Mapusa"></div>
                 <div class="form-group"><label for="products">Products Needed</label><select id="products" name="products"><option value="">Select Product Category</option><option value="jk-cement">JK Cement</option><option value="jsw-cement">JSW Cement</option><option value="ultratech">Ultratech Cement</option><option value="ramco">Ramco Cement</option><option value="sand">River Sand</option><option value="multiple">Multiple Products</option><option value="other">Other</option></select></div>
-                <div class="form-group"><label for="quantity">Estimated Quantity</label><input type="text" id="quantity" name="quantity" placeholder="e.g., 50 bags, 10 tons"></div>
+                <div class="form-group">
+                  <label for="quantity-value">Estimated Quantity</label>
+                  <div class="quantity-inputs">
+                    <input type="number" id="quantity-value" name="quantity_value" min="0" step="0.01" placeholder="e.g., 50">
+                    <select id="quantity-unit" name="quantity_unit">
+                      <option value="">Select Unit</option>
+                      <option value="bags">Bags</option>
+                      <option value="tons">Tons</option>
+                      <option value="kg">KG</option>
+                      <option value="liters">Liters</option>
+                      <option value="truckloads">Truckloads</option>
+                      <option value="custom">Other</option>
+                    </select>
+                    <input type="text" id="quantity-unit-custom" name="quantity_unit_custom" placeholder="Custom unit" class="quantity-custom-unit" style="display:none;">
+                  </div>
+                </div>
                 <div class="form-group"><label for="message">Additional Details</label><textarea id="message" name="message" rows="4" placeholder="Tell us about your project requirements, delivery timeline, or any specific questions..."></textarea></div>
                 <div class="form-group">
                   <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light"></div>
@@ -258,7 +275,10 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
     }
   }
   
-  .form-group{display:flex;flex-direction:column}.form-group label{font-weight:500;color:#1E293B;margin-bottom:.5rem}.form-group input,.form-group select,.form-group textarea{padding:12px 16px;border:2px solid #E2E8F0;border-radius:8px;font-size:16px;transition:all .3s ease;background:white}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.1)}.form-group textarea{resize:vertical;min-height:100px}.btn-large{padding:16px 32px;font-size:18px;font-weight:600;justify-self:start}.map-section{padding:5rem 0;background:linear-gradient(135deg,#F8FAFC 0%,#F1F5F9 100%)}.map-description{text-align:center;font-size:1.1rem;color:#64748B;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}.map-container{border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1);margin-bottom:3rem}.delivery-areas{text-align:center;background:white;padding:3rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)}.delivery-areas h3{font-size:1.5rem;font-weight:600;color:#1E293B;margin-bottom:1rem}.delivery-areas>p{color:#64748B;margin-bottom:2rem}.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}.area{background:#EFF6FF;color:#1D4ED8;padding:.75rem 1rem;border-radius:8px;font-weight:500;font-size:.9rem}@media (max-width:768px){.hero-content h1{font-size:2rem}.hero-features{gap:1rem}.feature{padding:0.5rem 1rem;font-size:0.9rem}.quick-contact-content{flex-direction:column;text-align:center;gap:1rem}.quick-contact-actions{justify-content:center}.quick-btn{padding:0.75rem 2rem}.contact-grid{grid-template-columns:1fr;gap:2rem}.contact-methods h2{font-size:2rem}.form-container{padding:2rem}.form-container h2{font-size:1.5rem}.areas-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}.btn-large{width:100%;justify-self:stretch}}
+  .hp-field{position:absolute;left:-9999px;opacity:0;pointer-events:none;height:0;width:0}
+  .quantity-inputs{display:grid;grid-template-columns:1.2fr 1fr;gap:.75rem}
+  .quantity-custom-unit{grid-column:1/-1}
+  .form-group{display:flex;flex-direction:column}.form-group label{font-weight:500;color:#1E293B;margin-bottom:.5rem}.form-group input,.form-group select,.form-group textarea{padding:12px 16px;border:2px solid #E2E8F0;border-radius:8px;font-size:16px;transition:all .3s ease;background:white}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.1)}.form-group textarea{resize:vertical;min-height:100px}.btn-large{padding:16px 32px;font-size:18px;font-weight:600;justify-self:start}.map-section{padding:5rem 0;background:linear-gradient(135deg,#F8FAFC 0%,#F1F5F9 100%)}.map-description{text-align:center;font-size:1.1rem;color:#64748B;margin-bottom:3rem;max-width:600px;margin-left:auto;margin-right:auto}.map-container{border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1);margin-bottom:3rem}.delivery-areas{text-align:center;background:white;padding:3rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.05)}.delivery-areas h3{font-size:1.5rem;font-weight:600;color:#1E293B;margin-bottom:1rem}.delivery-areas>p{color:#64748B;margin-bottom:2rem}.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}.area{background:#EFF6FF;color:#1D4ED8;padding:.75rem 1rem;border-radius:8px;font-weight:500;font-size:.9rem}@media (max-width:768px){.hero-content h1{font-size:2rem}.hero-features{gap:1rem}.feature{padding:0.5rem 1rem;font-size:0.9rem}.quick-contact-content{flex-direction:column;text-align:center;gap:1rem}.quick-contact-actions{justify-content:center}.quick-btn{padding:0.75rem 2rem}.contact-grid{grid-template-columns:1fr;gap:2rem}.contact-methods h2{font-size:2rem}.form-container{padding:2rem}.form-container h2{font-size:1.5rem}.areas-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}.btn-large{width:100%;justify-self:stretch}.quantity-inputs{grid-template-columns:1fr}.quantity-custom-unit{grid-column:1}}
   /* Additional styles for the success notification */
   .form-notification{position:fixed;top:20px;right:20px;background:#059669;color:white;padding:1rem 1.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:1000;animation:slideIn .3s ease;font-weight:500}.form-notification.slide-out{animation:slideOut .3s ease forwards}@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(100%);opacity:0}}
 </style>
@@ -267,6 +287,24 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
   const formMessage = document.getElementById('form-message') as HTMLDivElement;
+  const formStartTimeInput = document.getElementById('form-start-time') as HTMLInputElement;
+  const quantityUnitSelect = document.getElementById('quantity-unit') as HTMLSelectElement;
+  const quantityUnitCustomInput = document.getElementById('quantity-unit-custom') as HTMLInputElement;
+
+  if (formStartTimeInput) {
+    formStartTimeInput.value = Date.now().toString();
+  }
+
+  if (quantityUnitSelect && quantityUnitCustomInput) {
+    quantityUnitSelect.addEventListener('change', () => {
+      const showCustomUnit = quantityUnitSelect.value === 'custom';
+      quantityUnitCustomInput.style.display = showCustomUnit ? 'block' : 'none';
+      quantityUnitCustomInput.required = showCustomUnit;
+      if (!showCustomUnit) {
+        quantityUnitCustomInput.value = '';
+      }
+    });
+  }
 
   function showMessage(message: string, type: 'error' | 'success' | 'info') {
     if (formMessage) {
@@ -301,14 +339,26 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
       
       setLoading(true);
       const formData = new FormData(form);
+
+      // Block obvious bots from client side as early as possible
+      const honeypotValue = (formData.get('website') || '').toString().trim();
+      if (honeypotValue) {
+        showMessage('Unable to submit form. Please refresh and try again.', 'error');
+        setLoading(false);
+        return;
+      }
       
       // Get Turnstile token (if widget loaded)
       const turnstileResponse = (window as any).turnstile?.getResponse();
+
+      if (!turnstileResponse) {
+        showMessage('Please complete the captcha before submitting.', 'error');
+        setLoading(false);
+        return;
+      }
       
       // Add Turnstile token to form data if available
-      if (turnstileResponse) {
-        formData.append('cf-turnstile-response', turnstileResponse);
-      }
+      formData.append('cf-turnstile-response', turnstileResponse);
 
       try {
         // Send to API for validation and Discord logging
@@ -330,7 +380,12 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
         showMessage('✅ Form validated! Redirecting to WhatsApp...', 'success');
         
         const data = Object.fromEntries(formData);
-        const message = `*New Enquiry from Website*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Email:* ${data.email || 'N/A'}\n*Location:* ${data.location || 'N/A'}\n*Products:* ${data.products || 'N/A'}\n*Quantity:* ${data.quantity || 'N/A'}\n\n*Details:*\n${data.message || 'No additional details'}`;
+        const quantityValue = (data.quantity_value || '').toString().trim();
+        const quantityUnit = (data.quantity_unit || '').toString().trim();
+        const quantityCustomUnit = (data.quantity_unit_custom || '').toString().trim();
+        const finalQuantityUnit = quantityUnit === 'custom' ? quantityCustomUnit : quantityUnit;
+        const quantityLabel = quantityValue ? `${quantityValue}${finalQuantityUnit ? ` ${finalQuantityUnit}` : ''}` : 'N/A';
+        const message = `*New Enquiry from Website*\n\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Email:* ${data.email || 'N/A'}\n*Location:* ${data.location || 'N/A'}\n*Products:* ${data.products || 'N/A'}\n*Quantity:* ${quantityLabel}\n\n*Details:*\n${data.message || 'No additional details'}`;
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/919765664489?text=${encodedMessage}`;
         
@@ -338,6 +393,9 @@ const TURNSTILE_SITE_KEY = import.meta.env.CLOUDFLARE_TURNSTILE_SITE_KEY;
         setTimeout(() => {
           window.open(whatsappUrl, '_blank');
           form.reset();
+          if (formStartTimeInput) {
+            formStartTimeInput.value = Date.now().toString();
+          }
           // Reset Turnstile widget
           (window as any).turnstile?.reset();
           showMessage('Opened WhatsApp! Please send your message there.', 'info');
