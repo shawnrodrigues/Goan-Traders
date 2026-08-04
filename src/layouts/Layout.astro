@@ -9,14 +9,6 @@ export interface Props {
 const { title, description, keywords, canonical } = Astro.props;
 const defaultKeywords = "cement supplier goa, building materials goa, jk cement dealer, jsw cement, ultratech cement, ramco cement, sand supplier goa, construction materials goa";
 const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
-const siteUrl = Astro.site?.toString() || 'https://goantraders.com';
-const canonicalUrl = canonical ? new URL(canonical, siteUrl).toString() : Astro.url.toString();
-const socialImageUrl = new URL('/media/home-page.jpg', siteUrl).toString();
-const logoImageUrl = new URL('/media/GT-Logo.png', siteUrl).toString();
-const facebookPageUrl = 'https://www.facebook.com/profile.php?id=61583936241412';
-const instagramProfileUrl = 'https://www.instagram.com/goantraders/';
-const facebookPageId = '61583936241412';
-const facebookAppId = import.meta.env.PUBLIC_FACEBOOK_APP_ID;
 
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
@@ -34,7 +26,7 @@ import SpeedInsights from '@vercel/speed-insights/astro';
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={finalKeywords} />
-    <link rel="canonical" href={canonicalUrl} />
+    {canonical && <link rel="canonical" href={canonical} />}
     
     <!-- Favicon and App Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
@@ -50,27 +42,17 @@ import SpeedInsights from '@vercel/speed-insights/astro';
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Goan Traders" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={socialImageUrl} />
-    <meta property="og:image:secure_url" content={socialImageUrl} />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image" content="/favicon.ico" />
     <meta property="og:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:see_also" content={facebookPageUrl} />
-    <meta property="og:see_also" content={instagramProfileUrl} />
-    <meta property="fb:pages" content={facebookPageId} />
-    {facebookAppId && <meta property="fb:app_id" content={facebookAppId} />}
+    <meta property="og:url" content="https://goantraders.com" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image" content="/favicon.ico" />
     <meta name="twitter:image:alt" content="Goan Traders - Cement and Building Materials Supplier" />
-
-    <!-- Profile verification links -->
-    <link rel="me" href={facebookPageUrl} />
-    <link rel="me" href={instagramProfileUrl} />
     
     <!-- Additional SEO Meta Tags -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
