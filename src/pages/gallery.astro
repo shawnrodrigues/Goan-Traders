@@ -9,13 +9,13 @@ const GALLERY_WEB_PATH = '/media/gallery';
 const GALLERY_DIR = path.join(process.cwd(), 'public', 'media', 'gallery');
 const VALID_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
 
-function prettifyName(fileName) {
+function prettifyName(fileName: string) {
   return fileName
     .replace(/\.[^/.]+$/, '')
     .replace(/[-_]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+    .replace(/\b\w/g, (char: string) => char.toUpperCase());
 }
 
 function buildImageRecords() {
@@ -107,12 +107,6 @@ const galleryImages = buildImageRecords();
                 </article>
               ))}
             </div>
-
-            <div class="upload-note">
-              <h2>How To Add New Photos</h2>
-              <p>Upload files into public/media/gallery. For best speed and storage, prefer .webp or .avif files.</p>
-              <p>If you upload multiple formats with the same name, this page will automatically pick the most efficient format first.</p>
-            </div>
           </>
         )}
       </div>
@@ -198,8 +192,7 @@ const galleryImages = buildImageRecords();
     color: #1e293b;
   }
 
-  .empty-state,
-  .upload-note {
+  .empty-state {
     margin-top: 1.5rem;
     background: #fff;
     border: 1px solid #e2e8f0;
@@ -207,15 +200,13 @@ const galleryImages = buildImageRecords();
     padding: 1.25rem;
   }
 
-  .empty-state h2,
-  .upload-note h2 {
+  .empty-state h2 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: #0f172a;
   }
 
-  .empty-state p,
-  .upload-note p {
+  .empty-state p {
     color: #475569;
     line-height: 1.6;
   }
