@@ -1,8 +1,8 @@
-import { v as decryptString, w as createSlotValueFromString, x as isAstroComponentFactory, k as renderComponent, r as renderTemplate, R as ROUTE_TYPE_HEADER, y as REROUTE_DIRECTIVE_HEADER, A as AstroError, z as i18nNoLocaleFoundInPath, B as ResponseSentError, C as MiddlewareNoDataOrNextCalled, D as MiddlewareNotAResponse, G as originPathnameSymbol, H as RewriteWithBodyUsed, J as GetStaticPathsRequired, K as InvalidGetStaticPathsReturn, O as InvalidGetStaticPathsEntry, P as GetStaticPathsExpectedParams, Q as GetStaticPathsInvalidRouteParam, S as PageNumberParamNotFound, T as DEFAULT_404_COMPONENT, V as ActionNotFoundError, W as NoMatchingStaticPathFound, X as PrerenderDynamicEndpointPathCollide, Y as ReservedSlotName, Z as renderSlotToString, _ as renderJSX, $ as chunkToString, a0 as isRenderInstruction, a1 as ForbiddenRewrite, a2 as SessionStorageInitError, a3 as SessionStorageSaveError, a4 as ASTRO_VERSION, a5 as CspNotEnabled, a6 as LocalsReassigned, a7 as generateCspDigest, a8 as PrerenderClientAddressNotAvailable, a9 as clientAddressSymbol, aa as ClientAddressNotAvailable, ab as StaticClientAddressNotAvailable, ac as AstroResponseHeadersReassigned, ad as responseSentSymbol$1, ae as renderPage, af as REWRITE_DIRECTIVE_HEADER_KEY, ag as REWRITE_DIRECTIVE_HEADER_VALUE, ah as renderEndpoint, ai as LocalsNotAnObject, aj as REROUTABLE_STATUS_CODES } from './astro/server_CzjWD8nb.mjs';
+import { w as decryptString, x as createSlotValueFromString, y as isAstroComponentFactory, k as renderComponent, r as renderTemplate, R as ROUTE_TYPE_HEADER, z as REROUTE_DIRECTIVE_HEADER, A as AstroError, B as i18nNoLocaleFoundInPath, C as ResponseSentError, D as MiddlewareNoDataOrNextCalled, G as MiddlewareNotAResponse, H as originPathnameSymbol, J as RewriteWithBodyUsed, K as GetStaticPathsRequired, O as InvalidGetStaticPathsReturn, P as InvalidGetStaticPathsEntry, Q as GetStaticPathsExpectedParams, S as GetStaticPathsInvalidRouteParam, T as PageNumberParamNotFound, V as DEFAULT_404_COMPONENT, W as ActionNotFoundError, X as NoMatchingStaticPathFound, Y as PrerenderDynamicEndpointPathCollide, Z as ReservedSlotName, _ as renderSlotToString, $ as renderJSX, a0 as chunkToString, a1 as isRenderInstruction, a2 as ForbiddenRewrite, a3 as SessionStorageInitError, a4 as SessionStorageSaveError, a5 as ASTRO_VERSION, a6 as CspNotEnabled, a7 as LocalsReassigned, a8 as generateCspDigest, a9 as PrerenderClientAddressNotAvailable, aa as clientAddressSymbol, ab as ClientAddressNotAvailable, ac as StaticClientAddressNotAvailable, ad as AstroResponseHeadersReassigned, ae as responseSentSymbol$1, af as renderPage, ag as REWRITE_DIRECTIVE_HEADER_KEY, ah as REWRITE_DIRECTIVE_HEADER_VALUE, ai as renderEndpoint, aj as LocalsNotAnObject, ak as REROUTABLE_STATUS_CODES } from './astro/server_C-jpG4Oq.mjs';
 import { bold, red, yellow, dim, blue, green } from 'kleur/colors';
 import 'clsx';
 import { serialize, parse } from 'cookie';
-import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_BBTjGIQ7.mjs';
+import { A as ActionError, d as deserializeActionResult, s as serializeActionResult, a as ACTION_RPC_ROUTE_PATTERN, b as ACTION_QUERY_PARAMS, g as getActionQueryString, D as DEFAULT_404_ROUTE, c as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_C00TtLAQ.mjs';
 import 'es-module-lexer';
 import buffer from 'node:buffer';
 import crypto$1 from 'node:crypto';
@@ -12,7 +12,7 @@ import { unflatten as unflatten$1, stringify as stringify$1 } from 'devalue';
 import { createStorage, builtinDrivers } from 'unstorage';
 import '@vercel/routing-utils';
 import 'deterministic-object-hash';
-import nodePath from 'node:path';
+import path from 'node:path';
 
 function shouldAppendForwardSlash(trailingSlash, buildFormat) {
   switch (trailingSlash) {
@@ -3709,7 +3709,7 @@ function asyncIterableToBodyProps(iterable) {
 
 apply();
 
-nodePath.posix.join;
+path.posix.join;
 
 const ASTRO_PATH_HEADER = "x-astro-path";
 const ASTRO_PATH_PARAM = "x_astro_path";

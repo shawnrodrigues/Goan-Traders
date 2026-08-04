@@ -1,0 +1,237 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const GALLERY_WEB_PATH = '/media/gallery';
+const GALLERY_DIR = path.join(process.cwd(), 'public', 'media', 'gallery');
+const VALID_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+
+function prettifyName(fileName) {
+  return fileName
+    .replace(/\.[^/.]+$/, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function buildImageRecords() {
+  if (!fs.existsSync(GALLERY_DIR)) return [];
+
+  const files = fs.readdirSync(GALLERY_DIR)
+    .filter((file) => VALID_EXTENSIONS.has(path.extname(file).toLowerCase()));
+
+  const grouped = new Map();
+
+  for (const file of files) {
+    const extension = path.extname(file).toLowerCase();
+    const baseName = file.slice(0, -extension.length);
+
+    if (!grouped.has(baseName)) {
+      grouped.set(baseName, { baseName, files: {} });
+    }
+
+    grouped.get(baseName).files[extension] = `${GALLERY_WEB_PATH}/${file}`;
+  }
+
+  const records = [];
+
+  for (const entry of grouped.values()) {
+    const fallback = entry.files['.jpg']
+      || entry.files['.jpeg']
+      || entry.files['.png']
+      || entry.files['.webp']
+      || entry.files['.avif'];
+
+    if (!fallback) continue;
+
+    records.push({
+      title: prettifyName(entry.baseName),
+      avif: entry.files['.avif'] || null,
+      webp: entry.files['.webp'] || null,
+      fallback
+    });
+  }
+
+  return records.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+const galleryImages = buildImageRecords();
+---
+
+<Layout
+  title="Gallery - Goan Traders Projects, Products and Deliveries"
+  description="Explore Goan Traders gallery of cement products, building materials, deliveries and project highlights across Goa."
+  keywords="goan traders gallery, cement delivery photos goa, building materials gallery, construction supply images"
+  canonical="https://goantraders.com/gallery"
+>
+  <Header />
+
+  <main class="gallery-page">
+    <section class="gallery-hero">
+      <div class="container">
+        <h1>Goan Traders Gallery</h1>
+        <p>Project snapshots, product photos, and delivery highlights from across Goa.</p>
+      </div>
+    </section>
+
+    <section class="gallery-content">
+      <div class="container">
+        {galleryImages.length === 0 ? (
+          <div class="empty-state">
+            <h2>No Gallery Images Yet</h2>
+            <p>Add photos to public/media/gallery and they will appear automatically.</p>
+          </div>
+        ) : (
+          <>
+            <div class="gallery-grid">
+              {galleryImages.map((item) => (
+                <article class="gallery-card">
+                  <a href={item.fallback} target="_blank" rel="noopener noreferrer" aria-label={`Open ${item.title} image`}>
+                    <picture>
+                      {item.avif && <source srcset={item.avif} type="image/avif" />}
+                      {item.webp && <source srcset={item.webp} type="image/webp" />}
+                      <img
+                        src={item.fallback}
+                        alt={item.title}
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority="low"
+                      />
+                    </picture>
+                    <div class="caption">{item.title}</div>
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div class="upload-note">
+              <h2>How To Add New Photos</h2>
+              <p>Upload files into public/media/gallery. For best speed and storage, prefer .webp or .avif files.</p>
+              <p>If you upload multiple formats with the same name, this page will automatically pick the most efficient format first.</p>
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .gallery-page {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .gallery-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0ea5e9 100%);
+    color: #fff;
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+
+  .gallery-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 800;
+  }
+
+  .gallery-hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    opacity: 0.95;
+  }
+
+  .gallery-content {
+    padding: 3rem 0 4rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .gallery-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  }
+
+  .gallery-card a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+
+  .gallery-card picture {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: #e2e8f0;
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .caption {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .empty-state,
+  .upload-note {
+    margin-top: 1.5rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.25rem;
+  }
+
+  .empty-state h2,
+  .upload-note h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+  }
+
+  .empty-state p,
+  .upload-note p {
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-hero {
+      padding: 3rem 0 2.5rem;
+    }
+
+    .gallery-hero h1 {
+      font-size: 2rem;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+</style>
